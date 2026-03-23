@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tu peux ajouter ce petit reset pour lisser les polices */
+@layer base {
+  body {
+    @apply antialiased text-foreground bg-background;
+  }
+}
+
+
