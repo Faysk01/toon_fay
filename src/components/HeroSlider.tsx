@@ -5,21 +5,19 @@ import Image from "next/image";
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
-// Tes données avec les images locales (les slugs correspondent parfaitement aux IDs de notre base de données !)
 const FEATURED_MANGAS = [
   {
-    
     id: 1,
-    title: "love-script",
-    description: "Comedie romantique, une histoire d'amour plein de surprises.",
+    title: "Love Script",
+    description: "Comédie romantique, une histoire d'amour pleine de surprises.",
     image: "/imagesDB/covers/love-script.jpg", 
     tags: ["Romance", "Comédie"],
-    slug: "love-script" // <-- Correspond à l'ID dans Webtoons.ts
+    slug: "love-script"
   },
   {
     id: 2,
     title: "La légende du roi Soundiata",
-    description: "Découvrez l'épopée grandiose du fondateur de l'Empire du Mandé. Un récit historique époustouflant.",
+    description: "Découvrez l'épopée grandiose du fondateur de l'Empire du Mandé.",
     image: "/imagesDB/covers/roi-soundiata.jpg", 
     tags: ["Action", "Historique"],
     slug: "roi-soundiata"
@@ -27,7 +25,7 @@ const FEATURED_MANGAS = [
   {
     id: 3,
     title: "Guerre au pouvoir",
-    description: "Dans un monde où la force dicte la loi, seuls les plus déterminés pourront s'asseoir sur le trône.",
+    description: "Dans un monde où la force dicte la loi, seuls les plus déterminés survivront.",
     image: "/imagesDB/covers/guerre-pouvoir.jpg",
     tags: ["Action", "Drame"],
     slug: "guerre-pouvoir"
@@ -48,7 +46,9 @@ export default function HeroSlider() {
   const manga = FEATURED_MANGAS[current];
 
   return (
-    <div className="relative w-full h-[450px] md:h-[550px] overflow-hidden bg-slate-900 group">
+    // 1. md:hidden CACHE LE SLIDER SUR PC
+    // 2. h-[320px] RÉDUIT LA HAUTEUR SUR MOBILE
+    <div className="relative w-full h-[300px] overflow-hidden bg-slate-900 group md:hidden">
       
       {FEATURED_MANGAS.map((item, index) => (
         <div
@@ -62,63 +62,57 @@ export default function HeroSlider() {
             src={item.image}
             alt={item.title}
             fill
-            /* IMPORTANT : 
-               - object-cover : remplit tout l'espace
-               - object-[50%_20%] : Centre horizontalement (50%), mais se cale à 20% du haut.
-                 Cela permet de voir les visages au lieu des ventres sur les images portraits !
-            */
             className="object-cover object-[50%_20%]" 
             priority={index === 0}
           />
           
-          {/* Overlay : Dégradé sombre UNIQUEMENT en bas et à gauche pour le texte */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent opacity-80" />
+          {/* Overlay : Dégradé sombre */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent opacity-90" />
         </div>
       ))}
 
-      {/* CONTENU TEXTE */}
-      <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 z-10 flex flex-col justify-end h-full max-w-4xl">
+      {/* CONTENU TEXTE (Ajusté pour la petite taille) */}
+      <div className="absolute bottom-0 left-0 w-full p-5 z-10 flex flex-col justify-end h-full">
         
-        {/* Tags avec animation d'apparition */}
-        <div className="flex gap-2 mb-3 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+        {/* Tags */}
+        <div className="flex gap-2 mb-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
             {manga.tags.map(tag => (
-                <span key={tag} className="px-3 py-1 bg-indigo-600/90 backdrop-blur-sm text-white text-[11px] font-bold uppercase tracking-wider rounded shadow-lg">
+                <span key={tag} className="px-2.5 py-0.5 bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-wider rounded shadow-md">
                     {tag}
                 </span>
             ))}
         </div>
         
-        {/* Titre */}
-        <h1 className="text-4xl md:text-6xl font-black text-white mb-3 drop-shadow-lg leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
+        {/* Titre (Plus petit : text-3xl) */}
+        <h1 className="text-3xl font-black text-white mb-1.5 drop-shadow-lg leading-tight animate-in fade-in slide-in-from-bottom-2 duration-700 delay-200 line-clamp-1">
           {manga.title}
         </h1>
         
-        {/* Description */}
-        <p className="text-slate-200 text-sm md:text-lg mb-8 line-clamp-2 md:line-clamp-3 max-w-xl drop-shadow-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+        {/* Description (Marges réduites) */}
+        <p className="text-slate-300 text-xs mb-5 line-clamp-2 max-w-[85%] drop-shadow-md animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
           {manga.description}
         </p>
 
-        {/* Bouton d'action */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400">
-            {/* 1. CHANGEMENT ICI : Le lien pointe maintenant vers /series/... */}
+        {/* Bouton d'action (Plus fin) */}
+        <div className="animate-in fade-in slide-in-from-bottom-2 duration-700 delay-400">
             <Link 
                 href={`/series/${manga.slug}`} 
-                className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-3 rounded-full font-bold text-sm hover:bg-indigo-50 hover:scale-105 transition-all shadow-xl"
+                className="inline-flex items-center gap-2 bg-white text-slate-900 px-6 py-2.5 rounded-full font-bold text-xs hover:bg-indigo-50 active:scale-95 transition-all shadow-lg"
             >
-                <BookOpen className="w-5 h-5 text-indigo-600" /> 
-                Commencer la lecture
+                <BookOpen className="w-4 h-4 text-indigo-600" /> 
+                Commencer
             </Link>
         </div>
       </div>
 
-      {/* Indicateurs de position (petits traits en bas à droite) */}
-      <div className="absolute bottom-8 right-8 flex gap-2 z-20">
+      {/* Indicateurs de position (Plus discrets et mieux placés) */}
+      <div className="absolute bottom-4 right-4 flex gap-1.5 z-20">
         {FEATURED_MANGAS.map((_, idx) => (
             <button 
                 key={idx} 
                 onClick={() => setCurrent(idx)}
-                className={`h-1 rounded-full transition-all duration-500 ${idx === current ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
+                className={`h-1 rounded-full transition-all duration-500 ${idx === current ? 'w-6 bg-white' : 'w-1.5 bg-white/40'}`}
+                aria-label={`Aller au slide ${idx + 1}`}
             />
         ))}
       </div>
