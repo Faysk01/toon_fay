@@ -7,7 +7,9 @@ import { Search, ShoppingBag, Menu, ShieldCheck, Truck, RefreshCcw } from "lucid
 // Imports de tes composants Fintech
 import ShopHeroCarousel from "@/components/shop/ShopHeroCarousel";
 import ShopServices from "@/components/shop/ShopServices";
-import ShopTrendingProducts from "@/components/shop/ShopTrendingProducts"; // <-- L'import du nouveau composant
+import ShopTrendingProducts from "@/components/shop/ShopTrendingProducts"; 
+import ShopOurSelection from "@/components/shop/ShopOurSelection"; // <-- Import de la Sélection
+import ShopBDBooks from "@/components/shop/ShopBDBooks";
 
 export default function ShopPage() {
   const [activeTab, setActiveTab] = useState("shop");
@@ -90,7 +92,17 @@ export default function ShopPage() {
       <ShopTrendingProducts />
 
       {/* =========================================
-          5. BADGES DE RÉASSURANCE (Scroll Horizontal sur Mobile)
+          5. NOTRE SÉLECTION (Cartes Larges / Horizontales)
+      ========================================= */}
+      <ShopOurSelection />
+
+      {/* =========================================
+          6. VOS BANDES DESSINÉES (Livres Physiques)
+      ========================================= */}
+      <ShopBDBooks />
+
+      {/* =========================================
+          7. BADGES DE RÉASSURANCE (Scroll Horizontal sur Mobile)
       ========================================= */}
       <div className="w-full bg-slate-900/50 border-t border-slate-800/60 py-8 mt-auto">
         <div className="max-w-7xl mx-auto px-6">
@@ -131,7 +143,7 @@ export default function ShopPage() {
       </div>
 
       {/* =========================================
-          6. FOOTER MINIMALISTE
+          8. FOOTER MINIMALISTE
       ========================================= */}
       <footer className="bg-slate-950 border-t border-slate-900 py-12 px-6">
         <div className="max-w-3xl mx-auto flex flex-col items-center text-center">
