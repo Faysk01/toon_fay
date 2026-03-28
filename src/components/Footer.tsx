@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // <-- Correction ici : un seul usePathname
+import { usePathname } from "next/navigation"; 
 
 export default function Footer() {
   const pathname = usePathname();
 
-  // On cache le footer sur la page de lecture et la boutique
+  // On cache ce footer global sur la boutique car elle possède déjà le sien
   if (pathname?.startsWith("/shop")) {
     return null;
   }
@@ -13,12 +13,18 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-slate-200 mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+        
+        {/* GRILLE RESPONSIVE : 
+            - Mobile: 2 colonnes (grid-cols-2) pour gagner de la place
+            - Tablette/PC: 4 colonnes (md:grid-cols-4) 
+            - gap-y-10 : espace vertical entre les lignes sur mobile
+        */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
           
-          {/* --- Colonne Brand --- */}
-          <div className="space-y-4">
+          {/* --- Colonne Brand (Prend toute la largeur sur mobile pour bien présenter la marque) --- */}
+          <div className="col-span-2 md:col-span-1 space-y-4">
             <h3 className="text-2xl font-black text-slate-900 tracking-tight">
-              TOON<span className="text-indigo-600">.</span>
+              TOON<span className="text-emerald-500">.</span>
             </h3>
             <p className="text-sm text-slate-500 leading-relaxed pr-4">
               La plateforme de bandes dessinées développée par AfrikStudio. Faite par des fans, pour des fans.
@@ -27,39 +33,39 @@ export default function Footer() {
 
           {/* --- Colonne Liens --- */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Plateforme</h4>
+            <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Plateforme</h4>
             <ul className="space-y-3 text-sm text-slate-500 font-medium">
               <li>
-                <Link href="/originals" className="hover:text-indigo-600 transition-colors">Originals</Link>
+                <Link href="/originals" className="hover:text-emerald-600 transition-colors">Originals</Link>
               </li>
               <li>
-                <Link href="/rankings" className="hover:text-indigo-600 transition-colors">Classement</Link>
+                <Link href="/rankings" className="hover:text-emerald-600 transition-colors">Classement</Link>
               </li>
               <li>
-                <Link href="/categories" className="hover:text-indigo-600 transition-colors">Catégories</Link>
+                <Link href="/categories" className="hover:text-emerald-600 transition-colors">Catégories</Link>
               </li>
             </ul>
           </div>
 
           {/* --- Colonne Support --- */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Support</h4>
+            <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Support</h4>
             <ul className="space-y-3 text-sm text-slate-500 font-medium">
               <li>
-                <Link href="/support/help" className="hover:text-indigo-600 transition-colors">Aide & FAQ</Link>
+                <Link href="/support/help" className="hover:text-emerald-600 transition-colors">Aide & FAQ</Link>
               </li>
               <li>
-                <Link href="/support/terms" className="hover:text-indigo-600 transition-colors">Conditions d&rsquo;utilisation</Link>
+                <Link href="/support/terms" className="hover:text-emerald-600 transition-colors">Conditions d&rsquo;utilisation</Link>
               </li>
               <li>
-                <Link href="/support/privacy" className="hover:text-indigo-600 transition-colors">Confidentialité</Link>
+                <Link href="/support/privacy" className="hover:text-emerald-600 transition-colors">Confidentialité</Link>
               </li>
             </ul>
           </div>
 
-          {/* --- Colonne Social / Réseaux --- */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-6">Suivez-nous</h4>
+          {/* --- Colonne Social / Réseaux (Prend toute la largeur sur mobile) --- */}
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Suivez-nous</h4>
             <div className="flex gap-3">
               
               {/* BOUTON FACEBOOK */}
@@ -108,11 +114,11 @@ export default function Footer() {
         </div>
 
         {/* --- Copyright --- */}
-        <div className="border-t border-slate-200 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-400">
-          <p>&copy; {new Date().getFullYear()} Toon Inc. par AfrikStudio. Tous droits réservés.</p>
-          <div className="flex gap-6">
-            <span className="hover:text-slate-600 cursor-pointer transition-colors">Politique de cookies</span>
-            <span className="hover:text-slate-600 cursor-pointer transition-colors">Mentions légales</span>
+        <div className="border-t border-slate-200 mt-12 md:mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-400">
+          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Toon Inc. par AfrikStudio. Tous droits réservés.</p>
+          <div className="flex gap-4 md:gap-6 flex-wrap justify-center">
+            <span className="hover:text-emerald-600 cursor-pointer transition-colors">Politique de cookies</span>
+            <span className="hover:text-emerald-600 cursor-pointer transition-colors">Mentions légales</span>
           </div>
         </div>
       </div>

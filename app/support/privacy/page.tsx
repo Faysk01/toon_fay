@@ -9,7 +9,7 @@ export default function PrivacyPage() {
       {/* En-tête */}
       <div className="bg-white border-b border-slate-100 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 h-16 flex items-center">
-          <Link href="/" className="flex items-center gap-2 text-slate-500 hover:text-indigo-600 font-medium text-sm transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium text-sm transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Retour à l&rsquo;accueil
           </Link>
@@ -18,8 +18,8 @@ export default function PrivacyPage() {
 
       <article className="max-w-3xl mx-auto px-6 pt-16">
         <div className="flex items-center gap-3 mb-4">
-          <ShieldCheck className="w-5 h-5 text-indigo-600" />
-          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600">Légal & Sécurité</span>
+          <ShieldCheck className="w-5 h-5 text-emerald-600" />
+          <span className="text-xs font-bold tracking-widest uppercase text-emerald-600">Légal & Sécurité</span>
         </div>
         
         <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">

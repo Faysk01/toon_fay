@@ -14,7 +14,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // 1. TES COULEURS (Conservées)
+      // 1. TES COULEURS (Conservées + Ajout du thème Shop)
       colors: {
         primary: {
           DEFAULT: "#4f46e5", // Indigo
@@ -29,6 +29,21 @@ const config: Config = {
         accent: {
           DEFAULT: "#f0f0fa", // Fond tags
           foreground: "#4f46e5", // Texte tags
+        },
+        
+        // ========================================================
+        // 👇 AJOUT DU THÈME "SHOP" (Dark Fintech)
+        // ========================================================
+        shop: {
+          bg: "var(--shop-bg)",
+          surface: "var(--shop-surface)",
+          card: "var(--shop-card)",
+          accent: "var(--shop-accent)",
+          "accent-hover": "var(--shop-accent-hover)",
+          glow: "var(--shop-accent-glow)",
+          text: "var(--shop-text)",
+          muted: "var(--shop-muted)",
+          border: "var(--shop-border)",
         },
       },
       

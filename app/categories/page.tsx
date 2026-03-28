@@ -11,8 +11,8 @@ export default function CategoriesPage() {
       <header className="bg-white border-b border-slate-200 pt-10 pb-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col ">
           <div className="flex items-center gap-2 mb-3">
-            <Layers className="w-4 h-4 text-indigo-600" />
-            <span className="text-xs font-bold tracking-widest uppercase text-indigo-600">Explorer par genre</span>
+            <Layers className="w-4 h-4 text-emerald-500" />
+            <span className="text-xs font-bold tracking-widest uppercase text-emerald-500">Explorer par genre</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-3">
             Catégories

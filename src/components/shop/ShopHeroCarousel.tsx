@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ArrowRight, Gamepad2, ShoppingBag, Sparkles, BookOpenText, ChevronLeft, ChevronRight } from "lucide-react";
 
-// 1. DÉFINITION DES DONNÉES DES SLIDES (Réorganisées)
+// 1. DÉFINITION DES DONNÉES DES SLIDES
 const SLIDE_DATA = [
   {
     id: 1,
@@ -20,34 +20,32 @@ const SLIDE_DATA = [
     btnColor: "bg-white text-[#f57c00]",
   },
   {
-    id: 2, // Ancien Slide 3 passé en 2ème position
-    type: "cover", // Passage au type "cover" pour que l'image chambre remplisse tout
+    id: 2, 
+    type: "cover", 
     badgeIcon: ShoppingBag,
     badgeText: "Lifestyle & Déco",
     title: "Une belle sélection pour votre chambre",
     buttonText: "Découvrir",
-    imageSrc: "/assets/shopCarousel/chambre.png", // Nouvelle image de fond
+    imageSrc: "/assets/shopCarousel/chambre.png", 
     textColor: "text-white",
-    // Un bouton rose foncé/bordeaux pour rester dans le thème
     btnColor: "bg-pink-600 text-white hover:bg-pink-500",
-    // Overlay dégradé spécifique (rose/noir) pour ce slide
     overlayClass: "bg-gradient-to-t from-pink-950/90 via-pink-950/40 to-transparent md:bg-gradient-to-r md:from-pink-950/90 md:via-pink-950/50 md:to-transparent",
     badgeClass: "bg-pink-500/20 border border-pink-500/30",
     badgeTextClass: "text-pink-100",
     badgeIconClass: "text-pink-400"
   },
   {
-    id: 3, // Ancien Slide 2 passé en 3ème position
+    id: 3,
     type: "split",
-    imagePosition: "right",
+    imagePosition: "left", // <-- MODIFICATION ICI : L'image passe à gauche
     badgeIcon: Gamepad2,
     badgeText: "Gaming Zone",
     title: "Ne ratez pas nos produits pour gaming",
     buttonText: "Shop Now",
     imageSrc: "/assets/shopCarousel/game.png",
-    bgColor: "bg-slate-100", 
-    textColor: "text-slate-950",
-    btnColor: "bg-slate-950 text-white",
+    bgColor: "bg-slate-100", // Fond gris-blanc clair
+    textColor: "text-slate-800", // Texte noir clair / gris très foncé
+    btnColor: "bg-slate-800 text-white hover:bg-slate-700", // Bouton sombre contrastant
     borderColor: "border-slate-200"
   },
   {
@@ -59,12 +57,11 @@ const SLIDE_DATA = [
     buttonText: "Lire maintenant",
     imageSrc: "/assets/shopCarousel/filleLecture.png", 
     textColor: "text-white",
-    btnColor: "bg-emerald-500 text-white hover:bg-emerald-400",
-    // Overlay dégradé par défaut (sombre)
-    overlayClass: "bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent md:bg-gradient-to-r md:from-slate-950 md:via-slate-950/70 md:to-transparent",
-    badgeClass: "bg-emerald-500/20 border border-emerald-500/30",
-    badgeTextClass: "text-emerald-100",
-    badgeIconClass: "text-emerald-400"
+    btnColor: "bg-shop-accent text-white hover:bg-shop-accent-hover",
+    overlayClass: "bg-gradient-to-t from-shop-bg/90 via-shop-bg/40 to-transparent md:bg-gradient-to-r md:from-shop-bg md:via-shop-bg/70 md:to-transparent",
+    badgeClass: "bg-shop-accent/20 border border-shop-accent/30",
+    badgeTextClass: "text-white",
+    badgeIconClass: "text-shop-accent"
   }
 ];
 
@@ -82,12 +79,12 @@ export default function ShopHeroCarousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 4500); // <-- TEMPS ACCÉLÉRÉ (4.5 secondes)
+    }, 4500); 
     return () => clearInterval(timer);
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full h-[280px] md:h-[360px] overflow-hidden bg-slate-950 border-b border-slate-800/60 selection:bg-indigo-500/30 group">
+    <div className="relative w-full h-[280px] md:h-[360px] overflow-hidden bg-shop-bg border-b border-shop-border selection:bg-shop-accent/30 group">
       
       {/* Les Slides */}
       {SLIDE_DATA.map((slide, index) => {
@@ -123,7 +120,8 @@ export default function ShopHeroCarousel() {
                   {/* Partie Texte */}
                   <div className={`flex flex-col items-center text-center md:items-start md:text-left ${slide.textColor} ${isImageLeft ? 'md:order-2 md:pl-10' : 'md:order-1'}`}>
                     
-                    <div className="inline-flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3 md:py-1 rounded-full bg-black/5 border border-black/10 mb-3 md:mb-4 backdrop-blur-sm">
+                    {/* Badge: adaptation conditionnelle si le texte est sombre (slide 3) */}
+                    <div className={`inline-flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3 md:py-1 rounded-full mb-3 md:mb-4 backdrop-blur-sm ${slide.textColor === 'text-slate-800' ? 'bg-slate-200/50 border border-slate-300/50' : 'bg-black/10 border border-black/20'}`}>
                       <BadgeIcon className="w-3 h-3 md:w-3.5 md:h-3.5 opacity-80" />
                       <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">{slide.badgeText}</span>
                     </div>
@@ -157,9 +155,8 @@ export default function ShopHeroCarousel() {
                 LAYOUT TYPE "COVER" (Ajusté pour Mobile)
             --------------------------------------------------------- */}
             {slide.type === "cover" && (
-              <div className="relative w-full h-full overflow-hidden bg-slate-950">
+              <div className="relative w-full h-full overflow-hidden bg-shop-bg">
                 
-                {/* Image de fond : Couvre tout l'espace */}
                 <Image 
                   src={slide.imageSrc || ""}
                   alt={slide.title}
@@ -169,13 +166,11 @@ export default function ShopHeroCarousel() {
                   sizes="100vw"
                 />
 
-                {/* Dégradé personnalisé (Défini dans les données pour s'adapter à la couleur de l'image) */}
                 <div className={`absolute inset-0 ${slide.overlayClass}`}></div>
 
                 <div className="relative z-20 max-w-7xl mx-auto h-full flex flex-col justify-end md:justify-center px-8 md:px-16 pb-10 md:pb-0">
                   <div className={`flex flex-col items-start text-left ${slide.textColor}`}>
                     
-                    {/* Badge personnalisé */}
                     <div className={`inline-flex items-center gap-1.5 md:gap-2 px-2.5 py-1 md:px-3 md:py-1 rounded-full mb-3 md:mb-4 backdrop-blur-md ${slide.badgeClass}`}>
                       <BadgeIcon className={`w-3 h-3 md:w-3.5 md:h-3.5 ${slide.badgeIconClass}`} />
                       <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-widest ${slide.badgeTextClass}`}>{slide.badgeText}</span>
@@ -215,14 +210,14 @@ export default function ShopHeroCarousel() {
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
       </button>
 
-      {/* --- INDICATEURS --- */}
-      <div className="absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-30 bg-slate-950/60 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full backdrop-blur-sm border border-slate-800/50">
+      {/* --- INDICATEURS (Liés au thème) --- */}
+      <div className="absolute bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-30 bg-shop-bg/60 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full backdrop-blur-sm border border-shop-border/50">
         {SLIDE_DATA.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
             className={`h-1 md:h-1.5 rounded-full transition-all duration-500 ${
-              idx === current ? "w-4 md:w-6 bg-white" : "w-1.5 md:w-2 bg-white/30 hover:bg-white/60"
+              idx === current ? "w-4 md:w-6 bg-shop-text" : "w-1.5 md:w-2 bg-shop-muted/40 hover:bg-shop-muted/80"
             }`}
             aria-label={`Aller au slide ${idx + 1}`}
           />

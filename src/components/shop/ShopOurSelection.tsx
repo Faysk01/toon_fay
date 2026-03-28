@@ -38,26 +38,28 @@ const OUR_SELECTION = [
 
 export default function ShopOurSelection() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-12 relative z-10 border-t border-slate-800/50 mt-8">
+    // Bordure top liée au thème (border-shop-border)
+    <section className="w-full max-w-7xl mx-auto px-6 py-12 relative z-10 border-t border-shop-border mt-8">
       
       {/* --- EN-TÊTE --- */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div className="flex items-center gap-3">
-          {/* Icône étoile pour souligner la "Sélection" */}
+          {/* L'icône étoile dorée est conservée car elle représente bien le côté "Premium" */}
           <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
             <Star className="w-4 h-4 text-amber-400 fill-amber-400/20" />
           </div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
+          <h2 className="text-2xl font-black text-shop-text tracking-tight">
             Notre Sélection
           </h2>
         </div>
         
+        {/* Bouton avec variables globales */}
         <Link 
           href="#" 
-          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-white hover:bg-slate-800 hover:border-slate-700 transition-colors w-fit shrink-0"
+          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-shop-surface border border-shop-border text-xs font-semibold text-shop-text hover:bg-shop-card hover:border-shop-accent/50 transition-colors w-fit shrink-0"
         >
           Voir la sélection
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="w-3.5 h-3.5 text-shop-muted group-hover:text-shop-accent transition-all" />
         </Link>
       </div>
 
@@ -67,11 +69,11 @@ export default function ShopOurSelection() {
         {OUR_SELECTION.map((item) => (
           <div 
             key={item.id}
-            // w-[340px] ou w-[400px] pour la largeur, h-36 ou h-40 pour garder une hauteur fine.
-            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-slate-900/40 border border-slate-800/80 rounded-2xl cursor-pointer hover:border-indigo-500/30 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(99,102,241,0.15)] overflow-hidden"
+            // Utilisation de shop-surface/40 et hover avec accent
+            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-shop-surface/40 border border-shop-border rounded-2xl cursor-pointer hover:border-shop-accent/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg overflow-hidden"
           >
             {/* Image (à gauche) */}
-            <div className="relative w-1/3 md:w-36 h-full bg-slate-800 overflow-hidden shrink-0">
+            <div className="relative w-1/3 md:w-36 h-full bg-shop-card overflow-hidden shrink-0">
               <Image 
                 src={item.image}
                 alt={item.name}
@@ -79,36 +81,37 @@ export default function ShopOurSelection() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="150px"
               />
-              {/* Overlay léger */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-slate-950/50"></div>
+              {/* Overlay léger qui fond vers la couleur de fond globale */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-shop-bg/50"></div>
               
               {/* Highlight Badge */}
-              <div className="absolute top-2 left-2 px-2 py-0.5 bg-slate-900/80 backdrop-blur-md border border-slate-700 text-white text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
+              <div className="absolute top-2 left-2 px-2 py-0.5 bg-shop-surface/80 backdrop-blur-md border border-shop-border text-shop-text text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
                 {item.highlight}
               </div>
             </div>
             
             {/* Informations Produit (à droite) */}
-            <div className="p-4 flex flex-col flex-1 bg-slate-900/80 backdrop-blur-sm justify-between">
+            <div className="p-4 flex flex-col flex-1 bg-shop-surface/80 backdrop-blur-sm justify-between">
               <div>
+                {/* L'accent ambre/doré reste pour la catégorie de cette section */}
                 <span className="text-[10px] font-semibold text-amber-500 mb-1 tracking-wide uppercase truncate block">
                   {item.category}
                 </span>
-                <h3 className="text-sm font-bold text-white mb-1.5 line-clamp-1 group-hover:text-indigo-300 transition-colors">
+                <h3 className="text-sm font-bold text-shop-text mb-1.5 line-clamp-1 group-hover:text-shop-accent transition-colors">
                   {item.name}
                 </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-shop-muted line-clamp-2 leading-relaxed">
                   {item.description}
                 </p>
               </div>
               
               <div className="mt-auto flex items-center justify-between">
-                <span className="text-sm font-black text-white">
+                <span className="text-sm font-black text-shop-text">
                   {item.price} €
                 </span>
                 
-                {/* Bouton Panier Rapide Compact */}
-                <button className="w-8 h-8 bg-slate-800 text-white rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-indigo-600 shadow-sm">
+                {/* Bouton Panier Rapide : passe en vert (shop-accent) au survol */}
+                <button className="w-8 h-8 bg-shop-card border border-shop-border text-shop-text rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent shadow-sm">
                   <ShoppingBag className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -67,7 +67,7 @@ export default function ReadEpisodePage({
         {/* --- NAVBAR SUPÉRIEURE --- */}
         <div className={`fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-transform duration-300 ease-in-out ${showNav ? "translate-y-0" : "-translate-y-full"}`}>
           <div className="max-w-4xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-            <Link href={`/series/${seriesId}`} className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors group text-sm font-medium">
+            <Link href={`/series/${seriesId}`} className="flex items-center gap-2 text-slate-600 hover:text-emerald-600 transition-colors group text-sm font-medium">
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
               <span className="hidden md:block">Retour</span>
             </Link>
@@ -77,13 +77,13 @@ export default function ReadEpisodePage({
                 <h1 className="text-sm md:text-base font-bold text-slate-900 tracking-wide truncate max-w-[200px] md:max-w-xs text-center">
                   {series?.title || "Série inconnue"}
                 </h1>
-                <p className="text-[10px] md:text-xs font-bold text-indigo-500 uppercase tracking-[0.15em] mt-0.5">
+                <p className="text-[10px] md:text-xs font-bold text-emerald-500 uppercase tracking-[0.15em] mt-0.5">
                   {title}
                 </p>
               </div>
             </div>
 
-            <button className="text-slate-600 hover:text-indigo-600 transition-colors p-2 rounded-full hover:bg-slate-100">
+            <button className="text-slate-600 hover:text-emerald-600 transition-colors p-2 rounded-full hover:bg-slate-100">
               <Menu className="w-5 h-5" />
             </button>
           </div>
@@ -91,13 +91,13 @@ export default function ReadEpisodePage({
 
         {/* --- NAVIGATION FLOTTANTE PC (Gauche / Droite) --- */}
         {prevEpisode && (
-          <Link href={`/read/${seriesId}/${prevEpisode}`} className={`hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 bg-white hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 items-center justify-center rounded-full shadow-lg border border-slate-200 transition-all duration-300 ease-in-out ${showNav ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10 pointer-events-none"}`}>
+          <Link href={`/read/${seriesId}/${prevEpisode}`} className={`hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 bg-white hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 items-center justify-center rounded-full shadow-lg border border-slate-200 transition-all duration-300 ease-in-out ${showNav ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10 pointer-events-none"}`}>
             <ChevronLeft className="w-6 h-6" />
           </Link>
         )}
 
         {nextEpisode && (
-          <Link href={`/read/${seriesId}/${nextEpisode}`} className={`hidden xl:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 bg-white hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 items-center justify-center rounded-full shadow-lg border border-slate-200 transition-all duration-300 ease-in-out ${showNav ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10 pointer-events-none"}`}>
+          <Link href={`/read/${seriesId}/${nextEpisode}`} className={`hidden xl:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 bg-white hover:bg-emerald-50 text-slate-600 hover:text-emerald-600 items-center justify-center rounded-full shadow-lg border border-slate-200 transition-all duration-300 ease-in-out ${showNav ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10 pointer-events-none"}`}>
             <ChevronRight className="w-6 h-6" />
           </Link>
         )}
@@ -148,7 +148,7 @@ export default function ReadEpisodePage({
             
             {/* Bouton Suivant Dynamique */}
             {nextEpisode ? (
-              <Link href={`/read/${seriesId}/${nextEpisode}`} className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-indigo-600 text-white text-sm font-bold rounded-full hover:bg-indigo-700 hover:scale-[1.02] transition-all duration-200 shadow-lg shadow-indigo-600/20">
+              <Link href={`/read/${seriesId}/${nextEpisode}`} className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-emerald-500 text-white text-sm font-bold rounded-full hover:bg-emerald-600 hover:scale-[1.02] transition-all duration-200 shadow-lg shadow-emerald-600/20">
                 <span>Ép. Suivant</span>
                 <ChevronRight className="w-5 h-5" />
               </Link>
@@ -168,7 +168,7 @@ export default function ReadEpisodePage({
         </div>
 
         {/* --- BOUTON RETOUR EN HAUT --- */}
-        <button onClick={scrollToTop} className={`fixed bottom-8 right-8 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-indigo-50 text-slate-700 hover:text-indigo-600 rounded-full shadow-lg border border-slate-200 transition-all duration-300 group ${!showNav ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`} aria-label="Retour en haut">
+        <button onClick={scrollToTop} className={`fixed bottom-8 right-8 z-50 w-12 h-12 flex items-center justify-center bg-white/90 backdrop-blur-sm hover:bg-emerald-50 text-slate-700 hover:text-emerald-600 rounded-full shadow-lg border border-slate-200 transition-all duration-300 group ${!showNav ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`} aria-label="Retour en haut">
           <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
         </button>
 
@@ -201,7 +201,7 @@ export default function ReadEpisodePage({
           L&rsquo;épisode que vous essayez de lire n&rsquo;est pas encore disponible ou est en cours de montage par notre équipe.
         </p>
 
-        <Link href={`/series/${seriesId}`} className="flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white text-sm font-bold rounded-full hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20 hover:scale-[1.02] duration-200">
+        <Link href={`/series/${seriesId}`} className="flex items-center gap-3 px-8 py-4 bg-emerald-500 text-white text-sm font-bold rounded-full hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-600/20 hover:scale-[1.02] duration-200">
           <ArrowLeft className="w-4 h-4" />
           Revenir à {series?.title || "la série"}
         </Link>

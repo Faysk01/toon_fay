@@ -33,7 +33,7 @@ export default function CategoryTabs() {
                   px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 ease-out
                   border active:scale-95 whitespace-nowrap
                   ${isActive 
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200 transform scale-105' 
+                    ? 'bg-emerald-500 text-white border-emerald-600 shadow-md shadow-emerald-200 transform scale-105' 
                     : 'bg-white text-slate-500 border-slate-200 hover:border-slate-400 hover:text-slate-800 hover:bg-slate-50'}
                 `}
               >

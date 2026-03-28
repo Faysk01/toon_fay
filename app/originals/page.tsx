@@ -34,9 +34,9 @@ export default function OriginalsPage() {
           
           <div className="flex flex-col max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="w-4 h-4 text-indigo-600" />
+              <Sparkles className="w-4 h-4 text-emerald-500" />
               {/* Texte plus petit : text-xs au lieu de text-sm */}
-              <span className="text-xs font-bold tracking-widest uppercase text-indigo-600">Catalogue Complet</span>
+              <span className="text-xs font-bold tracking-widest uppercase text-emerald-500">Catalogue Complet</span>
             </div>
             {/* Titre réduit : text-3xl au lieu de 5xl */}
             <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-3">

@@ -76,7 +76,7 @@ export default async function SeriesDetailsPage({
             {series.tag && (
               <span
                 className={`absolute top-0 left-0 px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-widest text-white z-10 ${
-                  series.tagColor || "bg-indigo-600"
+                  series.tagColor || "bg-emerald-500"
                 }`}
               >
                 {series.tag}
@@ -99,7 +99,7 @@ export default async function SeriesDetailsPage({
             <div className="flex justify-center md:justify-start">
               <Link
                 href={`/read/${series.id}/ep-1`}
-                className="flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-500 px-10 py-3.5 rounded-sm transition-colors w-full sm:w-auto text-base md:text-lg font-bold shadow-lg shadow-indigo-600/30"
+                className="flex items-center justify-center gap-3 bg-emerald-500 hover:bg-emerald-600 px-10 py-3.5 rounded-sm transition-colors w-full sm:w-auto text-base md:text-lg font-bold shadow-lg shadow-emerald-600/30"
               >
                 <Play className="w-5 h-5 fill-white" />
                 Lire le 1er épisode
@@ -115,7 +115,7 @@ export default async function SeriesDetailsPage({
 
         <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4 mb-2 max-w-5xl">
           <div className="flex items-center gap-2">
-            <List className="w-6 h-6 text-indigo-600" />
+            <List className="w-6 h-6 text-emerald-500" />
             <h2 className="text-xl md:text-2xl font-extrabold text-slate-900 uppercase tracking-tight">
               Épisodes
             </h2>
@@ -153,7 +153,7 @@ export default async function SeriesDetailsPage({
               {/* Infos épisode : Affichage épuré "Épisode 1" sans badge superflu */}
               <div className="flex-1 min-w-0 flex flex-col justify-center">
                 
-                <h3 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate">
+                <h3 className="text-base md:text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors truncate">
                   {ep.title}
                 </h3>
                 
@@ -164,7 +164,7 @@ export default async function SeriesDetailsPage({
               </div>
 
               {/* Flèche */}
-              <div className="pr-2 md:pr-4 text-slate-300 group-hover:text-indigo-600 transition-colors group-hover:translate-x-1">
+              <div className="pr-2 md:pr-4 text-slate-300 group-hover:text-emerald-600 transition-colors group-hover:translate-x-1">
                 <ChevronRight className="w-5 h-5" />
               </div>
 

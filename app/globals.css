@@ -2,10 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tu peux ajouter ce petit reset pour lisser les polices */
 @layer base {
   body {
     @apply antialiased text-foreground bg-background;
+  }
+
+  /* =========================================
+     THÈME SPÉCIFIQUE POUR LE SHOP (Dark Fintech)
+  ========================================= */
+  .shop-theme {
+    /* Fonds (Gris sombre tendant vers le noir) */
+    --shop-bg: #020617;         /* Fond principal (ex: slate-950) */
+    --shop-surface: #0f172a;    /* Fond secondaire/Navbar (ex: slate-900) */
+    --shop-card: #1e293b;       /* Fond des cartes (ex: slate-800) */
+
+    /* Couleurs d'accentuation (Vert Émeraude) */
+    --shop-accent: #10b981;       /* Vert principal (ex: emerald-500) */
+    --shop-accent-hover: #34d399; /* Vert clair au survol (ex: emerald-400) */
+    --shop-accent-glow: rgba(16, 185, 129, 0.15); /* Pour les ombres/glow verts */
+
+    /* Textes & Bordures */
+    --shop-text: #f8fafc;       /* Texte principal très clair */
+    --shop-muted: #94a3b8;      /* Texte secondaire/descriptions */
+    --shop-border: #1e293b;     /* Bordures sombres discrètes */
   }
 }
 

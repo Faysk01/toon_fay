@@ -37,8 +37,8 @@ export default function RankingPage() {
           
           <div className="flex flex-col max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
-              <Trophy className="w-4 h-4 text-indigo-600" />
-              <span className="text-xs font-bold tracking-widest uppercase text-indigo-600">Leaderboard</span>
+              <Trophy className="w-4 h-4 text-emerald-500" />
+              <span className="text-xs font-bold tracking-widest uppercase text-emerald-500">Leaderboard</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-3">
               Le Top 15
@@ -48,7 +48,7 @@ export default function RankingPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 font-semibold text-xs rounded-full w-fit border border-indigo-100">
+          <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 font-semibold text-xs rounded-full w-fit border border-emerald-100">
             <TrendingUp className="w-4 h-4" />
             Mise à jour : Aujourd&rsquo;hui
           </div>

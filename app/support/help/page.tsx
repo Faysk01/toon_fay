@@ -9,7 +9,7 @@ export default function HelpPage() {
       {/* En-tête avec retour */}
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center">
-          <Link href="/" className="flex items-center gap-2 text-slate-500 hover:text-indigo-600 font-medium text-sm transition-colors">
+          <Link href="/" className="flex items-center gap-2 text-slate-500 hover:text-emerald-600 font-medium text-sm transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Retour à l&rsquo;accueil
           </Link>
@@ -18,8 +18,8 @@ export default function HelpPage() {
 
       <div className="max-w-3xl mx-auto px-6 pt-16">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-            <HelpCircle className="w-5 h-5 text-indigo-600" />
+          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+            <HelpCircle className="w-5 h-5 text-emerald-600" />
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
             Centre d&rsquo;Aide
@@ -62,15 +62,15 @@ export default function HelpPage() {
         </div>
 
         {/* Contact Support */}
-        <div className="mt-16 bg-indigo-50 border border-indigo-100 rounded-3xl p-8 text-center">
-          <h2 className="text-lg font-bold text-indigo-900 mb-2">Vous n&rsquo;avez pas trouvé votre réponse ?</h2>
-          <p className="text-indigo-700/80 text-sm mb-6">Notre équipe de support est là pour vous aider 24/7.</p>
+        <div className="mt-16 bg-emerald-50 border border-emerald-100 rounded-3xl p-8 text-center">
+          <h2 className="text-lg font-bold text-emerald-900 mb-2">Vous n&rsquo;avez pas trouvé votre réponse ?</h2>
+          <p className="text-emerald-700/80 text-sm mb-6">Notre équipe de support est là pour vous aider 24/7.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 font-bold rounded-full shadow-sm hover:shadow-md transition-all w-full sm:w-auto justify-center">
+            <button className="flex items-center gap-2 px-6 py-3 bg-white text-emerald-600 font-bold rounded-full shadow-sm hover:shadow-md transition-all w-full sm:w-auto justify-center">
               <Mail className="w-4 h-4" />
               Nous envoyer un email
             </button>
-            <button className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-bold rounded-full shadow-sm hover:shadow-md hover:bg-indigo-700 transition-all w-full sm:w-auto justify-center">
+            <button className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-white font-bold rounded-full shadow-sm hover:shadow-md hover:bg-emerald-600 transition-all w-full sm:w-auto justify-center">
               <MessageCircle className="w-4 h-4" />
               Chat en direct
             </button>

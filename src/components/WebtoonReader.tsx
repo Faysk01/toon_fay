@@ -89,7 +89,7 @@ export default function WebtoonReader({ seriesTitle, episodeTitle, images }: Web
           <button className="flex items-center gap-1 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
             <ChevronLeft className="w-5 h-5" /> Ép. Précédent
           </button>
-          <button className="flex items-center gap-1 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+          <button className="flex items-center gap-1 text-sm font-bold text-emerald-500 hover:text-emerald-600 transition-colors">
             Ép. Suivant <ChevronRight className="w-5 h-5" />
           </button>
         </div>

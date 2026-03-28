@@ -2,74 +2,79 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Shirt, Crown, Palette, Gift } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
-// Nos 5 services/catégories
+// Nouvelles données avec les images de fond et les couleurs intégrées au thème Fintech
 const SERVICES = [
   {
     id: 1,
-    title: "Éditions Collector",
-    description: "Des tomes physiques avec couvertures alternatives et pages couleurs inédites.",
-    icon: BookOpen,
-    color: "text-indigo-400",
-    bgColor: "bg-indigo-500/10",
-    borderColor: "group-hover:border-indigo-500/50",
-    glow: "group-hover:shadow-indigo-500/20"
+    title: "Beauté & Soins",
+    description: "Voir nos produits de qualité, pour une très belle peau.",
+    buttonText: "Découvrir",
+    image: "/assets/shopService/beauty.png",
+    // Connecté au thème principal (Texte clair)
+    titleColor: "text-shop-text", 
+    descColor: "text-shop-muted",
+    // Bouton sombre qui devient vert Fintech au survol
+    btnColor: "bg-shop-surface text-shop-text border border-shop-border hover:bg-shop-accent hover:border-shop-accent hover:text-white",
+    // Overlay sombre lié au fond global
+    overlay: "bg-gradient-to-t from-shop-bg/90 via-shop-bg/40 to-transparent",
+    glow: "hover:shadow-shop-accent/20"
   },
   {
     id: 2,
-    title: "Vêtements Exclusifs",
-    description: "T-shirts, hoodies et accessoires streetwear aux couleurs de vos héros.",
-    icon: Shirt,
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/10",
-    borderColor: "group-hover:border-blue-500/50",
-    glow: "group-hover:shadow-blue-500/20"
+    title: "Décoration",
+    description: "Consultez notre service de décoration d'événement.",
+    buttonText: "Découvrir",
+    image: "/assets/shopService/decoration.png",
+    // Conservé en Orange pour s'adapter à l'image
+    titleColor: "text-orange-50",
+    descColor: "text-orange-200/80",
+    btnColor: "bg-orange-500 text-white hover:bg-orange-400",
+    overlay: "bg-gradient-to-t from-orange-950/90 via-orange-950/40 to-transparent",
+    glow: "hover:shadow-orange-500/20"
   },
   {
     id: 3,
-    title: "Figurines Premium",
-    description: "Statues de collection ultra-détaillées, numérotées et peintes à la main.",
-    icon: Crown,
-    color: "text-purple-400",
-    bgColor: "bg-purple-500/10",
-    borderColor: "group-hover:border-purple-500/50",
-    glow: "group-hover:shadow-purple-500/20"
+    title: "Cadeaux",
+    description: "Voir les produits sélectionnés spécialement pour vous.",
+    buttonText: "Voir plus",
+    image: "/assets/shopService/cadeau.png",
+    // Connecté au Vert Fintech (shop-accent)
+    titleColor: "text-white",
+    descColor: "text-shop-muted",
+    btnColor: "bg-shop-accent text-white hover:bg-shop-accent-hover",
+    overlay: "bg-gradient-to-t from-shop-bg/90 via-shop-bg/50 to-transparent",
+    glow: "hover:shadow-shop-accent/30"
   },
   {
     id: 4,
-    title: "Artworks & Posters",
-    description: "Des impressions haute qualité sur papier d'art, signées par les créateurs.",
-    icon: Palette,
-    color: "text-pink-400",
-    bgColor: "bg-pink-500/10",
-    borderColor: "group-hover:border-pink-500/50",
-    glow: "group-hover:shadow-pink-500/20"
-  },
-  {
-    id: 5,
-    title: "Box Mystère",
-    description: "Un assortiment surprise de goodies et de mangas pour les vrais fans.",
-    icon: Gift,
-    color: "text-emerald-400",
-    bgColor: "bg-emerald-500/10",
-    borderColor: "group-hover:border-emerald-500/50",
-    glow: "group-hover:shadow-emerald-500/20"
+    title: "Personnalisation",
+    description: "Personnalisez vos objets avec nos services dédiés.",
+    buttonText: "Découvrir",
+    image: "/assets/shopService/personnalisation.png",
+    // Conservé en clair/sombre pour bien contraster avec les autres cartes sombres
+    titleColor: "text-slate-900",
+    descColor: "text-slate-700",
+    btnColor: "bg-slate-900 text-white hover:bg-slate-800",
+    overlay: "bg-gradient-to-t from-white/90 via-white/50 to-transparent",
+    glow: "hover:shadow-white/10"
   }
 ];
 
 export default function ShopServices() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-16 md:py-24 relative z-10">
+    <section className="w-full max-w-7xl mx-auto px-6 py-12 md:py-20 relative z-10">
       
-      {/* --- EN-TÊTE : Uniquement le bouton "Tout voir" à gauche --- */}
+      {/* --- EN-TÊTE : Bouton "Tout voir" lié au thème --- */}
       <div className="flex mb-8">
         <Link 
           href="#" 
-          className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 border border-slate-800 text-sm font-semibold text-white hover:bg-slate-800 transition-colors w-fit"
+          className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-shop-surface border border-shop-border text-sm font-semibold text-shop-text hover:bg-shop-card hover:border-shop-accent/50 transition-colors w-fit shadow-md"
         >
           Tout voir
-          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="w-4 h-4 text-shop-muted group-hover:text-shop-accent group-hover:translate-x-1 transition-all" />
         </Link>
       </div>
 
@@ -77,28 +82,43 @@ export default function ShopServices() {
       <div className="flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         
         {SERVICES.map((service) => {
-          const Icon = service.icon;
-          
           return (
             <div 
               key={service.id}
-              className={`group relative flex flex-col w-72 md:w-80 shrink-0 snap-start bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-3xl cursor-pointer transition-all duration-300 ease-out hover:scale-105 hover:bg-slate-900 ${service.borderColor} shadow-lg ${service.glow}`}
+              // Dimensions format "Portrait" + Bordure liée au thème
+              className={`group relative w-[280px] md:w-[320px] h-[380px] md:h-[420px] shrink-0 snap-start rounded-3xl cursor-pointer transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-xl overflow-hidden border border-shop-border ${service.glow}`}
             >
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${service.bgColor}`}>
-                <Icon className={`w-7 h-7 ${service.color}`} />
-              </div>
+              {/* IMAGE DE FOND */}
+              <Image 
+                src={service.image} 
+                alt={service.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 280px, 320px"
+              />
+
+              {/* OVERLAY DÉGRADÉ (Défini dans les données) */}
+              <div className={`absolute inset-0 transition-opacity duration-500 ${service.overlay}`}></div>
               
-              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">
-                {service.title}
-              </h3>
-              
-              <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">
-                {service.description}
-              </p>
-              
-              <div className="mt-auto flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-white transition-colors">
-                Découvrir
-                <ArrowRight className="w-4 h-4 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+              {/* CONTENU (Texte et Bouton) poussé vers le bas */}
+              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-10">
+                
+                {/* Titre de la catégorie */}
+                <h3 className={`text-2xl font-black mb-2 tracking-tight ${service.titleColor}`}>
+                  {service.title}
+                </h3>
+                
+                {/* Description */}
+                <p className={`text-sm leading-relaxed mb-6 font-medium ${service.descColor} line-clamp-3`}>
+                  {service.description}
+                </p>
+                
+                {/* Bouton d'action */}
+                <button className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 shadow-lg ${service.btnColor} group-hover:shadow-xl`}>
+                  {service.buttonText}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
               </div>
             </div>
           );

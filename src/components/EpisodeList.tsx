@@ -43,10 +43,10 @@ export default function EpisodeList({ episodes }: EpisodeListProps) {
 
             {/* 2. Infos de l'épisode */}
             <div className="flex-1">
-              <span className="text-xs font-bold text-indigo-600 mb-0.5 block">
+              <span className="text-xs font-bold text-emerald-500 mb-0.5 block">
                 Ép. {ep.number}
               </span>
-              <h4 className="text-sm font-semibold text-slate-800 group-hover:text-indigo-700 transition-colors">
+              <h4 className="text-sm font-semibold text-slate-800 group-hover:text-emerald-600 transition-colors">
                 {ep.title}
               </h4>
               <div className="flex items-center gap-1 mt-1 text-xs text-slate-400">
@@ -57,7 +57,7 @@ export default function EpisodeList({ episodes }: EpisodeListProps) {
 
             {/* 3. Bouton d'action */}
             <div className="pr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              <span className="flex items-center gap-1 text-xs font-bold text-indigo-600 uppercase tracking-wider">
+              <span className="flex items-center gap-1 text-xs font-bold text-emerald-500 uppercase tracking-wider">
                 Lire <ChevronRight className="w-4 h-4" />
               </span>
             </div>

@@ -84,9 +84,9 @@ export default function Home() {
                 </div>
                 
                 {/* Colonne Droite : Top Classement (Petit Widget Bonus) */}
-                <div className="hidden md:block bg-indigo-50/50 rounded-2xl p-6 h-fit sticky top-28 border border-indigo-100/50">
-                    <h3 className="font-bold text-indigo-900 mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
+                <div className="hidden md:block bg-emerald-50/50 rounded-2xl p-6 h-fit sticky top-28 border border-emerald-100/50">
+                    <h3 className="font-bold text-emerald-900 mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                       Top de la semaine
                     </h3>
                     
@@ -98,11 +98,11 @@ export default function Home() {
                               href={`/series/${serie.id}`}
                               className="group flex items-center gap-4 hover:bg-white p-2 rounded-lg transition-colors -ml-2"
                             >
-                                <span className={`text-xl font-black w-6 text-center ${i < 3 ? 'text-indigo-600' : 'text-slate-300'}`}>
+                                <span className={`text-xl font-black w-6 text-center ${i < 3 ? 'text-emerald-500' : 'text-slate-300'}`}>
                                   {i + 1}
                                 </span>
                                 <div className="flex-1 min-w-0">
-                                  <div className="text-sm font-bold text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
+                                  <div className="text-sm font-bold text-slate-800 truncate group-hover:text-emerald-600 transition-colors">
                                     {serie.title}
                                   </div>
                                   <div className="text-xs text-slate-500 truncate mt-0.5">
