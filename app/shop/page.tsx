@@ -10,6 +10,7 @@ import ShopServices from "@/components/shop/ShopServices";
 import ShopTrendingProducts from "@/components/shop/ShopTrendingProducts"; 
 import ShopOurSelection from "@/components/shop/ShopOurSelection"; 
 import ShopBDBooks from "@/components/shop/ShopBDBooks";
+import ShopAlaUne from "@/components/shop/ShopAlaUne"; // <-- NOUVEL IMPORT
 
 export default function ShopPage() {
   // 1. ÉTATS POUR LA SMART NAVBAR
@@ -140,6 +141,7 @@ export default function ShopPage() {
         </div>
       </div>
 
+      <ShopAlaUne />
       {/* =========================================
           FOOTER MINIMALISTE
       ========================================= */}

@@ -3,66 +3,47 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ShoppingBag, Plus, Book } from "lucide-react";
+import { ArrowRight, ShoppingBag, Book } from "lucide-react";
 
-// Fausses données spécifiques aux Tomes physiques de tes BD
+// Fausses données pour tes Bandes Dessinées Physiques
 const BD_BOOKS = [
   { 
     id: 1, 
     name: "La légende du roi Soundiata - Tome 1", 
-    price: "14.99", 
+    description: "L'épopée fondatrice de l'Empire du Mandé. Une édition richement illustrée.",
+    price: "15 000", 
     category: "Édition Standard", 
     image: "/imagesDB/covers/roi-soundiata.jpg",
-    tag: "Nouveau" 
+    highlight: "Nouveau"
   },
   { 
     id: 2, 
     name: "Love Script - Tome 1", 
-    price: "14.99", 
+    description: "Comédie romantique. Quand le destin s'en mêle, l'amour n'est jamais loin.",
+    price: "12 500", 
     category: "Édition Standard", 
-    image: "/imagesDB/covers/love-script.jpg" 
+    image: "/imagesDB/covers/love-script.jpg",
+    highlight: "Best-Seller"
   },
   { 
     id: 3, 
-    name: "Guerre au pouvoir - Tome 1", 
-    price: "24.90", 
-    category: "Édition Collector", 
-    image: "/imagesDB/covers/guerre-pouvoir.jpg", 
-    tag: "Limité" 
-  },
-  { 
-    id: 4, 
-    name: "La Queen - Artbook Officiel", 
-    price: "29.99", 
-    category: "Artbook", 
-    image: "/imagesDB/covers/la-queen.jpg" 
-  },
-  { 
-    id: 5, 
-    name: "Albinos Noir - Tome 1", 
-    price: "14.99", 
-    category: "Édition Standard", 
-    image: "/imagesDB/covers/albinos-noir.jpg" 
-  },
-  { 
-    id: 6, 
-    name: "Village Sans Frontière - Intégrale", 
-    price: "39.90", 
-    category: "Coffret Intégral", 
-    image: "/imagesDB/covers/village-sans-frontiere.jpg", 
-    tag: "Exclu" 
+    name: "Guerre au pouvoir - Intégrale", 
+    description: "Le coffret collector ultime contenant l'intégralité du premier arc narratif.",
+    price: "45 000", 
+    category: "Coffret Collector", 
+    image: "/imagesDB/covers/guerre-pouvoir.jpg",
+    highlight: "Édition Limitée"
   }
 ];
 
 export default function ShopBDBooks() {
   return (
-    // Remplacement de border-slate-800/50 par border-shop-border
     <section className="w-full max-w-7xl mx-auto px-6 py-12 relative z-10 border-t border-shop-border mt-8">
       
-      {/* --- EN-TÊTE : Minimaliste --- */}
+      {/* --- EN-TÊTE --- */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div className="flex items-center gap-3">
-          {/* Petite icône (Utilisation de shop-accent au lieu de indigo) */}
+          {/* Icône Livre liée au thème Fintech */}
           <div className="w-8 h-8 rounded-full bg-shop-accent/10 flex items-center justify-center border border-shop-accent/20">
             <Book className="w-4 h-4 text-shop-accent" />
           </div>
@@ -71,70 +52,68 @@ export default function ShopBDBooks() {
           </h2>
         </div>
         
-        {/* Bouton Voir plus */}
+        {/* Bouton Voir la collection */}
         <Link 
           href="#" 
           className="group flex items-center gap-2 px-4 py-2 rounded-full bg-shop-surface border border-shop-border text-xs font-semibold text-shop-text hover:bg-shop-card hover:border-shop-accent/50 transition-colors w-fit shrink-0"
         >
-          Voir toute la collection
+          Voir la collection
           <ArrowRight className="w-3.5 h-3.5 text-shop-muted group-hover:text-shop-accent transition-all" />
         </Link>
       </div>
 
-      {/* --- CARTES DE LIVRES SCROLLABLES --- */}
-      <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+      {/* --- CARTES LARGES SCROLLABLES --- */}
+      <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 pt-2 -mx-6 px-6 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         
-        {BD_BOOKS.map((book) => (
+        {BD_BOOKS.map((item) => (
           <div 
-            key={book.id}
-            // Format "Poche" w-48, design Dark Fintech
-            className="group relative flex flex-col w-48 shrink-0 snap-start bg-shop-surface/40 border border-shop-border rounded-2xl cursor-pointer hover:border-shop-accent/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+            key={item.id}
+            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-shop-surface/40 border border-shop-border rounded-2xl cursor-pointer hover:border-shop-accent/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg overflow-hidden"
           >
-            {/* Image du Livre : aspect-[2/3] */}
-            <div className="relative w-full aspect-[2/3] bg-shop-card overflow-hidden">
-              <Image 
-                src={book.image}
-                alt={book.name}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 768px) 200px, 200px"
-              />
+            {/* Image (à gauche) - Format adapté aux livres (aspect-[2/3] simulé) */}
+            <div className="relative w-1/3 md:w-32 h-full bg-shop-card overflow-hidden shrink-0 flex items-center justify-center p-2">
+              <div className="relative w-full h-full rounded-md overflow-hidden shadow-sm">
+                 <Image 
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="150px"
+                  />
+              </div>
               
-              {/* Overlay sombre au survol pour faire ressortir le bouton */}
-              <div className="absolute inset-0 bg-gradient-to-t from-shop-bg/90 via-shop-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-              {/* Tag miniature */}
-              {book.tag && (
-                <div className="absolute top-3 left-3 px-2 py-0.5 bg-shop-surface/80 backdrop-blur-md border border-shop-border text-shop-text text-[9px] font-bold uppercase tracking-wider rounded-full z-10 shadow-sm">
-                  {book.tag}
-                </div>
-              )}
-
-              {/* Bouton Panier Rapide au centre de la couverture */}
-              <button className="absolute bottom-4 right-4 w-9 h-9 bg-shop-accent text-white rounded-full flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:bg-shop-accent-hover hover:scale-110 z-10">
-                <ShoppingBag className="w-4 h-4" />
-              </button>
+              {/* Overlay léger */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-shop-bg/30"></div>
+              
+              {/* Highlight Badge */}
+              <div className="absolute top-2 left-2 px-2 py-0.5 bg-shop-accent/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
+                {item.highlight}
+              </div>
             </div>
             
-            {/* Informations du Livre (Fond sombre) */}
-            <div className="p-4 flex flex-col flex-1 bg-shop-surface/90 backdrop-blur-sm">
-              <span className="text-[10px] font-semibold text-shop-accent mb-1 tracking-wide uppercase truncate">
-                {book.category}
-              </span>
+            {/* Informations Produit (à droite) */}
+            <div className="p-4 flex flex-col flex-1 bg-shop-surface/80 backdrop-blur-sm justify-between">
+              <div>
+                <span className="text-[10px] font-semibold text-shop-muted mb-1 tracking-wide uppercase truncate block">
+                  {item.category}
+                </span>
+                <h3 className="text-sm font-bold text-shop-text mb-1.5 line-clamp-2 group-hover:text-shop-accent transition-colors leading-snug">
+                  {item.name}
+                </h3>
+                <p className="text-[11px] text-shop-muted line-clamp-2 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
               
-              <h3 className="text-sm font-bold text-shop-text mb-3 line-clamp-2 leading-snug group-hover:text-shop-accent-hover transition-colors">
-                {book.name}
-              </h3>
-              
-              <div className="mt-auto flex items-center justify-between">
+              <div className="mt-auto flex items-center justify-between pt-2">
                 <span className="text-sm font-black text-shop-text">
-                  {book.price} €
+                  {item.price} FCFA
                 </span>
                 
-                {/* Petit bouton "+" */}
-                <div className="w-6 h-6 rounded-full border border-shop-border flex items-center justify-center text-shop-muted group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent transition-colors">
-                  <Plus className="w-3.5 h-3.5" />
-                </div>
+                {/* Bouton Panier Rapide */}
+                <button className="w-8 h-8 bg-shop-card border border-shop-border text-shop-text rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent shadow-sm">
+                  <ShoppingBag className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
 
