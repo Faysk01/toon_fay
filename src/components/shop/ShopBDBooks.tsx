@@ -43,22 +43,22 @@ export default function ShopBDBooks() {
       {/* --- EN-TÊTE --- */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div className="flex items-center gap-3">
-          {/* Icône Livre liée au thème Fintech */}
           <div className="w-8 h-8 rounded-full bg-shop-accent/10 flex items-center justify-center border border-shop-accent/20">
             <Book className="w-4 h-4 text-shop-accent" />
           </div>
+          {/* Le titre reste de la couleur du thème sombre car il est en dehors de la carte */}
           <h2 className="text-2xl font-black text-shop-text tracking-tight">
             Éditions Physiques
           </h2>
         </div>
         
-        {/* Bouton Voir la collection */}
         <Link 
           href="#" 
-          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-shop-surface border border-shop-border text-xs font-semibold text-shop-text hover:bg-shop-card hover:border-shop-accent/50 transition-colors w-fit shrink-0"
+          // Le bouton "Voir la collection" a aussi un texte qui devient vert sombre au survol
+          className="group flex items-center gap-2 px-4 py-2 rounded-full bg-shop-surface border border-shop-border text-xs font-semibold text-shop-text hover:bg-slate-800 hover:border-emerald-700/50 transition-colors w-fit shrink-0"
         >
           Voir la collection
-          <ArrowRight className="w-3.5 h-3.5 text-shop-muted group-hover:text-shop-accent transition-all" />
+          <ArrowRight className="w-3.5 h-3.5 text-shop-muted group-hover:text-emerald-700 transition-all" />
         </Link>
       </div>
 
@@ -68,10 +68,12 @@ export default function ShopBDBooks() {
         {BD_BOOKS.map((item) => (
           <div 
             key={item.id}
-            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-shop-surface/40 border border-shop-border rounded-2xl cursor-pointer hover:border-shop-accent/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+            // 1. CARTE CLAIRE : Utilisation de `bg-slate-50`
+            // 2. HOVER VERT SOMBRE : hover:border-emerald-700/50 et hover:shadow-emerald-700/15
+            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-slate-400 border border-slate-200 rounded-2xl cursor-pointer hover:border-emerald-700/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-700/15 overflow-hidden"
           >
-            {/* Image (à gauche) - Format adapté aux livres (aspect-[2/3] simulé) */}
-            <div className="relative w-1/3 md:w-32 h-full bg-shop-card overflow-hidden shrink-0 flex items-center justify-center p-2">
+            {/* Zone Image (à gauche) */}
+            <div className="relative w-1/3 md:w-32 h-full bg-slate-200/80 overflow-hidden shrink-0 flex items-center justify-center p-2">
               <div className="relative w-full h-full rounded-md overflow-hidden shadow-sm">
                  <Image 
                     src={item.image}
@@ -82,36 +84,37 @@ export default function ShopBDBooks() {
                   />
               </div>
               
-              {/* Overlay léger */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-shop-bg/30"></div>
-              
-              {/* Highlight Badge */}
-              <div className="absolute top-2 left-2 px-2 py-0.5 bg-shop-accent/90 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
+              {/* Highlight Badge : Vert profond pour marquer le côté Premium */}
+              <div className="absolute top-2 left-2 px-2 py-0.5 bg-emerald-700 text-white text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
                 {item.highlight}
               </div>
             </div>
             
-            {/* Informations Produit (à droite) */}
-            <div className="p-4 flex flex-col flex-1 bg-shop-surface/80 backdrop-blur-sm justify-between">
+            {/* 2. TEXTE (à droite) : INVERSION DES COULEURS (Textes foncés sur fond clair) */}
+            <div className="p-4 flex flex-col flex-1 justify-between z-10 bg-transparent">
               <div>
-                <span className="text-[10px] font-semibold text-shop-muted mb-1 tracking-wide uppercase truncate block">
+                {/* Catégorie en gris moyen */}
+                <span className="text-[10px] font-bold text-slate-500 mb-1 tracking-wide uppercase truncate block">
                   {item.category}
                 </span>
-                <h3 className="text-sm font-bold text-shop-text mb-1.5 line-clamp-2 group-hover:text-shop-accent transition-colors leading-snug">
+                {/* Titre en NOIR (slate-900) qui devient VERT SOMBRE (emerald-700) au survol */}
+                <h3 className="text-sm font-black text-slate-900 mb-1.5 line-clamp-2 group-hover:text-emerald-700 transition-colors leading-snug">
                   {item.name}
                 </h3>
-                <p className="text-[11px] text-shop-muted line-clamp-2 leading-relaxed">
+                {/* Description en gris foncé (slate-600) */}
+                <p className="text-[11px] text-slate-600 font-medium line-clamp-2 leading-relaxed">
                   {item.description}
                 </p>
               </div>
               
               <div className="mt-auto flex items-center justify-between pt-2">
-                <span className="text-sm font-black text-shop-text">
+                {/* Prix en NOIR */}
+                <span className="text-sm font-black text-slate-900">
                   {item.price} FCFA
                 </span>
                 
-                {/* Bouton Panier Rapide */}
-                <button className="w-8 h-8 bg-shop-card border border-shop-border text-shop-text rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent shadow-sm">
+                {/* 3. Bouton Panier : Sombre de base, devient VERT SOMBRE (emerald-700) au survol */}
+                <button className="w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-emerald-700 shadow-sm">
                   <ShoppingBag className="w-3.5 h-3.5" />
                 </button>
               </div>

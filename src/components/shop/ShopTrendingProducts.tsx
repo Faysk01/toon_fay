@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ArrowRight, ShoppingBag, Plus } from "lucide-react";
 
 // 1. IMPORT DE TES VRAIES DONNÉES
-import { PRODUCTS_DATA } from "@/data/productsData"; // <-- Vérifie que le chemin est correct
+import { PRODUCTS_DATA } from "@/data/productsData"; 
 
 export default function ShopTrendingProducts() {
   
@@ -38,57 +38,59 @@ export default function ShopTrendingProducts() {
         {trendingProducts.map((product) => (
           <div 
             key={product.id}
-            // Utilisation de la bordure du thème pour bien délimiter la carte
-            className="group relative flex flex-col w-56 shrink-0 snap-start rounded-2xl cursor-pointer hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-shop-accent/10 border border-shop-border overflow-hidden bg-shop-surface"
+            // Carte principale
+            className="group relative flex flex-col w-60 md:w-64 shrink-0 snap-start rounded-2xl cursor-pointer hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-xl hover:shadow-shop-accent/10 border border-shop-border overflow-hidden bg-shop-surface"
           >
-            {/* Image du produit : On garde bg-slate-100 pur pour bien faire ressortir les images sans fond (Bicolor) */}
-            <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden flex items-center justify-center p-4">
+            {/* 1. IMAGE DU PRODUIT : Plus grande et fond Orange Clair */}
+            {/* L'aspect ratio passe de 4/3 à 1/1 (Carré) pour donner plus de hauteur à l'image */}
+            <div className="relative w-full aspect-square bg-orange-100/60 overflow-hidden flex items-center justify-center p-2">
+              
+              {/* Image agrandie (padding réduit p-4 au lieu de p-6) et Zoom plus fort au survol (scale-125) */}
               <Image 
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 p-6"
-                sizes="(max-width: 768px) 200px, 200px"
+                className="object-contain transition-transform duration-700 ease-out group-hover:scale-125 p-4 drop-shadow-xl"
+                sizes="(max-width: 768px) 250px, 300px"
               />
               
               {/* Overlay ultra léger au survol de l'image */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 z-0"></div>
 
-              {/* Tag miniature (Vert Fintech lié au thème) */}
+              {/* Tag miniature */}
               {product.tag && (
-                <div className="absolute top-3 left-3 px-2 py-0.5 bg-shop-accent/20 text-shop-accent text-[9px] font-bold uppercase tracking-wider rounded-full z-10 shadow-sm border border-shop-accent/30 backdrop-blur-sm">
+                <div className="absolute top-3 left-3 px-2 py-0.5 bg-shop-accent/10 backdrop-blur-md text-shop-accent text-[9px] font-bold uppercase tracking-wider rounded-full z-20 shadow-sm border border-shop-accent/20">
                   {product.tag}
                 </div>
               )}
 
-              {/* Bouton Panier Rapide (Vert dynamique) */}
-              <button className="absolute bottom-3 right-3 w-8 h-8 bg-shop-accent text-white rounded-full flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-md hover:bg-shop-accent-hover hover:scale-110 z-10">
+              {/* Bouton Panier Rapide */}
+              <button className="absolute bottom-3 right-3 w-8 h-8 bg-shop-accent text-white rounded-full flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-md hover:bg-shop-accent-hover hover:scale-110 z-20">
                 <ShoppingBag className="w-3.5 h-3.5" />
               </button>
             </div>
             
-            {/* Informations Produit : Fond SOMBRE (shop-surface) */}
-            <div className="p-4 flex flex-col flex-1 bg-shop-surface border-t border-shop-border">
+            {/* 2. INFORMATIONS PRODUIT : Fond SOMBRE (shop-surface) */}
+            <div className="p-4 flex flex-col flex-1 bg-shop-surface border-t border-shop-border relative z-10">
               
-              {/* Nom du produit (Blanc) */}
+              {/* Nom du produit */}
               <h3 className="text-sm font-bold text-shop-text mb-1 line-clamp-1 group-hover:text-shop-accent transition-colors">
                 {product.name}
               </h3>
               
-              {/* Description courte (Gris moyen) */}
+              {/* Description courte */}
               <p className="text-[11px] text-shop-muted line-clamp-2 leading-relaxed mb-4 flex-1">
                 {product.description}
               </p>
               
               {/* Ligne Prix / Action */}
               <div className="mt-auto flex items-center justify-between">
-                {/* Prix en Blanc */}
                 <span className="text-sm font-black text-shop-text">
                   {product.formattedPrice} FCFA
                 </span>
                 
                 {/* Petit bouton "+" stylisé pour fond sombre */}
-                <div className="w-6 h-6 rounded-full border border-shop-border flex items-center justify-center text-shop-muted group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent transition-colors">
+                <div className="w-6 h-6 rounded-full border border-shop-border flex items-center justify-center text-shop-muted group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent transition-colors shadow-sm">
                   <Plus className="w-3.5 h-3.5" />
                 </div>
               </div>
