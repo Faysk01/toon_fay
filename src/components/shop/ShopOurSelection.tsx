@@ -44,41 +44,38 @@ export default function ShopOurSelection() {
         {ourSelectionProducts.map((product) => (
           <div 
             key={product.id}
-            // 1. Hauteur augmentée : h-44 sur mobile, h-48 sur PC
+            // Hauteur de la carte
             className="group relative flex w-[350px] md:w-[450px] h-44 md:h-48 shrink-0 snap-start bg-shop-surface border border-shop-border rounded-2xl cursor-pointer hover:border-shop-accent/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-shop-accent/10 overflow-hidden"
           >
             {/* ==========================================================
-                1. ZONE IMAGE (À gauche) avec IMAGE DE FOND PERSONNALISÉE
+                1. ZONE IMAGE (À gauche)
             ========================================================== */}
-            <div className="relative w-[40%] md:w-48 h-full overflow-hidden shrink-0 flex items-center justify-center p-4">
+            <div className="relative w-[40%] md:w-48 h-full shrink-0 flex items-center justify-center p-2 bg-transparent overflow-hidden">
               
-              {/* Image de fond "Podium/Texture" */}
-              {/* IMPORTANT : Remplace 'fond-texture.png' par le vrai nom de ton image */}
+              {/* IMAGE DE FOND PURE */}
               <Image 
                 src="/assets/fontProduct.png" 
                 alt="Texture de fond"
                 fill
-                className="object-cover opacity-60 mix-blend-luminosity group-hover:opacity-80 transition-opacity duration-500"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 sizes="(max-width: 768px) 150px, 200px"
               />
 
-              {/* Dégradé pour adoucir la transition entre l'image de fond et le bord droit */}
-              <div className="absolute inset-0 bg-gradient-to-r from-shop-bg/10 via-transparent to-shop-surface z-0"></div>
-
-              {/* Cercle décoratif vert (lumière sous le produit) */}
-              <div className="absolute w-24 h-24 bg-shop-accent/20 rounded-full blur-2xl group-hover:bg-shop-accent/30 transition-colors duration-500 z-0"></div>
+              {/* OVERLAY D'ASSOMBRISSEMENT (S'active au hover) */}
+              {/* Passe de transparent à noir à 40% pour faire ressortir le produit devant */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 z-0"></div>
               
-              {/* LE PRODUIT LUI-MÊME (Au premier plan) */}
+              {/* LE PRODUIT LUI-MÊME (Plus grand, marge réduite, fort zoom au hover) */}
               <Image 
                 src={product.image}
                 alt={product.name}
                 fill
-                className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-110 drop-shadow-2xl z-10"
+                className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-125 drop-shadow-2xl z-10"
                 sizes="(max-width: 768px) 150px, 200px"
               />
               
               {/* Highlight Badge */}
-              <div className="absolute top-2 left-2 px-2 py-0.5 bg-shop-surface/80 backdrop-blur-md border border-shop-border text-shop-text text-[9px] font-bold uppercase tracking-wider rounded-md z-20 shadow-sm">
+              <div className="absolute top-3 left-3 px-2 py-0.5 bg-shop-card/90 backdrop-blur-md border border-shop-border text-shop-text text-[9px] font-bold uppercase tracking-wider rounded-md z-20 shadow-sm">
                 {product.tag || product.category}
               </div>
             </div>
@@ -86,14 +83,14 @@ export default function ShopOurSelection() {
             {/* ==========================================================
                 2. INFORMATIONS PRODUIT (À droite)
             ========================================================== */}
-            <div className="p-4 md:p-5 flex flex-col flex-1 bg-shop-surface border-l border-shop-border/50 justify-between z-10">
+            <div className="p-4 md:p-5 flex flex-col flex-1 border-l border-shop-border/50 justify-between z-10 bg-shop-surface">
               <div>
                 {/* Catégorie */}
                 <span className="text-[10px] font-semibold text-amber-500 mb-1 tracking-wide uppercase truncate block">
                   Sélection Premium
                 </span>
                 
-                {/* Titre (Taille augmentée text-base au lieu de text-sm) */}
+                {/* Titre */}
                 <h3 className="text-base font-bold text-shop-text mb-2 line-clamp-2 group-hover:text-shop-accent transition-colors leading-snug">
                   {product.name}
                 </h3>
@@ -105,7 +102,7 @@ export default function ShopOurSelection() {
               </div>
               
               <div className="mt-auto flex items-center justify-between pt-2">
-                {/* Prix (Plus gros pour être bien lisible) */}
+                {/* Prix */}
                 <span className="text-base font-black text-shop-text">
                   {product.formattedPrice} FCFA
                 </span>
