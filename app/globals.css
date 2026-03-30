@@ -3,16 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  /* =========================================
-     FIX iOS SAFARI (Bounce Effect)
-  ========================================= */
   html, body {
+    /* On laisse ta couleur d'accueil par défaut (bg-background) */
     @apply antialiased text-foreground bg-background;
     
-    /* C'est cette ligne qui fait la magie : elle bloque le rebond violet/blanc en haut et en bas ! */
-    overscroll-behavior-y: none; 
-    
-    /* Supprime le surlignage gris par défaut sur iOS quand on clique sur un bouton */
+    /* On a SUPPRIMÉ le overscroll-behavior pour remettre le rebond ! */
     -webkit-tap-highlight-color: transparent; 
   }
 
@@ -20,20 +15,17 @@
      THÈME SPÉCIFIQUE POUR LE SHOP (Dark Fintech)
   ========================================= */
   .shop-theme {
-    /* Fonds (Gris sombre tendant vers le noir) */
-    --shop-bg: #020617;         /* Fond principal (ex: slate-950) */
-    --shop-surface: #0f172a;    /* Fond secondaire/Navbar (ex: slate-900) */
-    --shop-card: #1e293b;       /* Fond des cartes (ex: slate-800) */
+    --shop-bg: #020617;         
+    --shop-surface: #0f172a;    
+    --shop-card: #1e293b;       
 
-    /* Couleurs d'accentuation (Vert Émeraude) */
-    --shop-accent: #10b981;       /* Vert principal (ex: emerald-500) */
-    --shop-accent-hover: #34d399; /* Vert clair au survol (ex: emerald-400) */
-    --shop-accent-glow: rgba(16, 185, 129, 0.15); /* Pour les ombres/glow verts */
+    --shop-accent: #10b981;       
+    --shop-accent-hover: #34d399; 
+    --shop-accent-glow: rgba(16, 185, 129, 0.15); 
 
-    /* Textes & Bordures */
-    --shop-text: #f8fafc;       /* Texte principal très clair */
-    --shop-muted: #94a3b8;      /* Texte secondaire/descriptions */
-    --shop-border: #1e293b;     /* Bordures sombres discrètes */
+    --shop-text: #f8fafc;       
+    --shop-muted: #94a3b8;      
+    --shop-border: #1e293b;     
   }
 }
 

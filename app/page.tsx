@@ -1,4 +1,7 @@
 import Link from "next/link";
+// 1. IMPORT DU COMPOSANT IMAGE DE NEXT.JS
+import Image from "next/image";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import CategoryTabs from "@/components/CategoryTabs";
 import WebtoonCarousel from "@/components/WebtoonCarousel";
@@ -7,7 +10,6 @@ import HeroSlider from "@/components/HeroSlider";
 import { POPULAR_SERIES, NEW_RELEASES } from "@/data/Webtoons";
 
 // --- FAUSSES DONNÉES TEMPORAIRES (MOCK) ---
-// En attendant de créer la vraie DB des épisodes
 const MOCK_LATEST_EPISODES = [
   { 
     id: "roi-soundiata-ep-1", 
@@ -34,37 +36,40 @@ const MOCK_LATEST_EPISODES = [
 
 export default function Home() {
   return (
-    // On garde pb-24, mais on n'a plus besoin de pt-16 car ta Navbar est "sticky" et s'adapte toute seule !
-    <main className="min-h-screen bg-white pb-24">
+    // La page d'accueil principale
+    <main className="min-h-screen bg-white pb-24 selection:bg-emerald-500/30">
       
       {/* --- SECTION HERO (FULL WIDTH) --- */}
       <HeroSlider />
 
-      <div className="space-y-20 mt-12"> {/* Espacement global aéré */}
+      <div className="space-y-20 mt-16"> {/* Espacement global aéré et moderne */}
 
         {/* --- SECTION 1 : POPULAIRES --- */}
         <section>
-          <div className="container mx-auto px-4 md:px-6">
-            <SectionHeader title="Top Séries" href="/" />
-            <div className="mt-4">
+          <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader title="Top Séries" href="/rankings" />
+            <div className="mt-6">
               <WebtoonCarousel items={POPULAR_SERIES} />
             </div>
           </div>
         </section>
 
         {/* --- SECTION 2 : PAR CATÉGORIES --- */}
-        <section className="bg-slate-50 py-16 border-y border-slate-100">
-          <div className="container mx-auto px-4 md:px-6">
+        {/* Un fond très légèrement grisé pour casser la monotonie du blanc */}
+        <section className="bg-slate-50/50 py-16 border-y border-slate-100">
+          <div className="max-w-7xl mx-auto px-6">
             <SectionHeader title="Explorer par Genre" />
-            <CategoryTabs />
+            <div className="mt-6">
+              <CategoryTabs />
+            </div>
           </div>
         </section>
 
         {/* --- SECTION 3 : NOUVEAUTÉS --- */}
         <section>
-          <div className="container mx-auto px-4 md:px-6">
-            <SectionHeader title="Fraîchement Sortis" href="/" />
-            <div className="mt-4">
+          <div className="max-w-7xl mx-auto px-6">
+            <SectionHeader title="Fraîchement Sortis" href="/originals" />
+            <div className="mt-6">
               <WebtoonCarousel items={NEW_RELEASES} />
             </div>
           </div>
@@ -72,40 +77,72 @@ export default function Home() {
 
         {/* --- SECTION 4 : DERNIERS ÉPISODES & CLASSEMENT --- */}
         <section>
-          <div className="container mx-auto px-4 md:px-6">
-             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="max-w-7xl mx-auto px-6">
+             <div className="grid lg:grid-cols-3 gap-10 lg:gap-16">
                 
-                {/* Colonne Gauche : Liste Épisodes (Prend 2 colonnes sur 3) */}
-                <div className="md:col-span-2">
+                {/* --- Colonne Gauche : Liste Épisodes (Prend 2 colonnes sur 3) --- */}
+                <div className="lg:col-span-2">
                   <SectionHeader title="Dernières Mises à Jour" />
-                  <div className="mt-4">
+                  <div className="mt-6">
                     <EpisodeList episodes={MOCK_LATEST_EPISODES} />
+                  </div>
+                  
+                  {/* Bouton pour voir tous les épisodes */}
+                  <div className="mt-8 flex justify-center">
+                    <Link 
+                      href="/episodes" 
+                      className="group flex items-center gap-2 px-6 py-3 rounded-full bg-slate-50 border border-slate-200 text-sm font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 transition-all shadow-sm"
+                    >
+                      Voir tout l&rsquo;historique
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                 </div>
                 
-                {/* Colonne Droite : Top Classement (Petit Widget Bonus) */}
-                <div className="hidden md:block bg-emerald-50/50 rounded-2xl p-6 h-fit sticky top-28 border border-emerald-100/50">
-                    <h3 className="font-bold text-emerald-900 mb-6 uppercase tracking-wider text-sm flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                      Top de la semaine
-                    </h3>
+                {/* --- Colonne Droite : Top Classement (Widget Premium) --- */}
+                <div className="hidden lg:block">
+                  <div className="bg-white rounded-3xl p-6 h-fit sticky top-28 border border-slate-200 shadow-xl shadow-slate-200/40">
                     
-                    <ul className="space-y-4">
+                    {/* En-tête du Widget */}
+                    <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                      <h3 className="font-black text-slate-900 flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                          <TrendingUp className="w-4 h-4" />
+                        </div>
+                        Top de la semaine
+                      </h3>
+                    </div>
+                    
+                    {/* Liste du classement */}
+                    <ul className="space-y-2">
                         {POPULAR_SERIES.slice(0, 5).map((serie, i) => (
                           <li key={serie.id}>
-                            {/* Le lien vers la série pour que ce soit interactif ! */}
                             <Link 
                               href={`/series/${serie.id}`}
-                              className="group flex items-center gap-4 hover:bg-white p-2 rounded-lg transition-colors -ml-2"
+                              className="group flex items-center gap-4 hover:bg-slate-50 p-3 rounded-2xl transition-all border border-transparent hover:border-slate-100"
                             >
-                                <span className={`text-xl font-black w-6 text-center ${i < 3 ? 'text-emerald-500' : 'text-slate-300'}`}>
+                                {/* Numéro du classement */}
+                                <span className={`text-2xl font-black w-6 text-center transition-colors ${i === 0 ? 'text-emerald-500 drop-shadow-sm' : i === 1 ? 'text-emerald-400' : i === 2 ? 'text-emerald-300' : 'text-slate-200 group-hover:text-slate-300'}`}>
                                   {i + 1}
                                 </span>
+                                
+                                {/* 2. REMPLACEMENT DE <img /> PAR <Image /> ICI */}
+                                <div className="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 relative border border-slate-200/60">
+                                  <Image 
+                                    src={serie.image} 
+                                    alt={serie.title} 
+                                    fill
+                                    sizes="48px"
+                                    className="object-cover group-hover:scale-110 transition-transform duration-500" 
+                                  />
+                                </div>
+
+                                {/* Infos */}
                                 <div className="flex-1 min-w-0">
-                                  <div className="text-sm font-bold text-slate-800 truncate group-hover:text-emerald-600 transition-colors">
+                                  <div className="text-sm font-bold text-slate-900 truncate group-hover:text-emerald-600 transition-colors">
                                     {serie.title}
                                   </div>
-                                  <div className="text-xs text-slate-500 truncate mt-0.5">
+                                  <div className="text-xs font-medium text-slate-500 truncate mt-0.5">
                                     {serie.author}
                                   </div>
                                 </div>
@@ -113,6 +150,13 @@ export default function Home() {
                           </li>
                         ))}
                     </ul>
+                    
+                    {/* Lien bas du widget */}
+                    <Link href="/rankings" className="mt-4 pt-4 border-t border-slate-100 w-full flex items-center justify-center text-xs font-bold text-slate-400 hover:text-emerald-600 transition-colors">
+                      Voir le classement complet
+                    </Link>
+
+                  </div>
                 </div>
 
              </div>

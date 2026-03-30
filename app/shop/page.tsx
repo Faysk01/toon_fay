@@ -10,7 +10,7 @@ import ShopServices from "@/components/shop/ShopServices";
 import ShopTrendingProducts from "@/components/shop/ShopTrendingProducts"; 
 import ShopOurSelection from "@/components/shop/ShopOurSelection"; 
 import ShopBDBooks from "@/components/shop/ShopBDBooks";
-import ShopASavoir from "@/components/shop/ShopASavoir"; // <-- NOUVEL IMPORT
+import ShopASavoir from "@/components/shop/ShopASavoir"; 
 import ShopAlaUne from "@/components/shop/ShopAlaUne";
 
 export default function ShopPage() {
@@ -18,8 +18,15 @@ export default function ShopPage() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // 2. LOGIQUE DE DÉFILEMENT (Scroll)
+  // 2. LOGIQUE DE DÉFILEMENT ET DE FOND DYNAMIQUE (Scroll & Background)
   useEffect(() => {
+    // =========================================
+    // MAGIE FINTECH : Fond sombre pour le rebond
+    // =========================================
+    // On force le fond racine du navigateur à prendre la couleur sombre du Shop
+    document.documentElement.style.backgroundColor = "#020617";
+    document.body.style.backgroundColor = "#020617";
+
     const handleScroll = () => {
       if (typeof window !== "undefined") {
         const currentScrollY = window.scrollY;
@@ -39,7 +46,16 @@ export default function ShopPage() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    // =========================================
+    // NETTOYAGE : Retour à la normale
+    // =========================================
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      // Quand on quitte la page Shop, on efface la couleur sombre pour retrouver le blanc de l'Accueil !
+      document.documentElement.style.backgroundColor = "";
+      document.body.style.backgroundColor = "";
+    };
   }, [lastScrollY]);
 
   return (
