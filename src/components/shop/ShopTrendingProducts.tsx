@@ -99,6 +99,27 @@ export default function ShopTrendingProducts() {
           </div>
         ))}
         
+        {/* ==========================================================
+            CARTE FINALE : FLÈCHE STYLISÉE "VOIR TOUT"
+        ========================================================== */}
+        <Link 
+          href="#"
+          // self-stretch permet à la carte de prendre la même hauteur que les autres cartes produits
+          className="group relative flex flex-col items-center justify-center w-[140px] md:w-[180px] self-stretch shrink-0 snap-start rounded-2xl bg-shop-surface/40 border border-shop-border hover:bg-shop-surface hover:border-shop-accent/40 transition-all duration-300 cursor-pointer overflow-hidden"
+        >
+          {/* Effet de brillance (Shine) qui traverse la carte au hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-shop-accent/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-0"></div>
+
+          {/* Cercle avec la Flèche (S'anime vers la droite) */}
+          <div className="w-12 h-12 rounded-full bg-shop-card border border-shop-border flex items-center justify-center text-shop-muted group-hover:text-white group-hover:bg-shop-accent group-hover:border-shop-accent transition-all duration-300 mb-3 shadow-sm relative z-10">
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+          
+          <span className="text-xs font-bold text-shop-muted group-hover:text-white transition-colors text-center px-4 relative z-10">
+            Voir toutes les tendances
+          </span>
+        </Link>
+
         {/* Espace pour le scroll */}
         <div className="w-4 shrink-0"></div>
 

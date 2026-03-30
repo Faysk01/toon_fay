@@ -46,7 +46,6 @@ export default function ShopBDBooks() {
           <div className="w-8 h-8 rounded-full bg-shop-accent/10 flex items-center justify-center border border-shop-accent/20">
             <Book className="w-4 h-4 text-shop-accent" />
           </div>
-          {/* Le titre reste de la couleur du thème sombre car il est en dehors de la carte */}
           <h2 className="text-2xl font-black text-shop-text tracking-tight">
             Éditions Physiques
           </h2>
@@ -54,7 +53,6 @@ export default function ShopBDBooks() {
         
         <Link 
           href="#" 
-          // Le bouton "Voir la collection" a aussi un texte qui devient vert sombre au survol
           className="group flex items-center gap-2 px-4 py-2 rounded-full bg-shop-surface border border-shop-border text-xs font-semibold text-shop-text hover:bg-slate-800 hover:border-emerald-700/50 transition-colors w-fit shrink-0"
         >
           Voir la collection
@@ -68,11 +66,9 @@ export default function ShopBDBooks() {
         {BD_BOOKS.map((item) => (
           <div 
             key={item.id}
-            // 1. CARTE CLAIRE : Utilisation de `bg-slate-50`
-            // 2. HOVER VERT SOMBRE : hover:border-emerald-700/50 et hover:shadow-emerald-700/15
-            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-slate-400 border border-slate-200 rounded-2xl cursor-pointer hover:border-emerald-700/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-700/15 overflow-hidden"
+            className="group relative flex w-[340px] md:w-[420px] h-36 md:h-40 shrink-0 snap-start bg-slate-50 border border-slate-200 rounded-2xl cursor-pointer hover:border-emerald-700/50 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-700/15 overflow-hidden"
           >
-            {/* Zone Image (à gauche) */}
+            {/* Zone Image */}
             <div className="relative w-1/3 md:w-32 h-full bg-slate-200/80 overflow-hidden shrink-0 flex items-center justify-center p-2">
               <div className="relative w-full h-full rounded-md overflow-hidden shadow-sm">
                  <Image 
@@ -83,37 +79,29 @@ export default function ShopBDBooks() {
                     sizes="150px"
                   />
               </div>
-              
-              {/* Highlight Badge : Vert profond pour marquer le côté Premium */}
               <div className="absolute top-2 left-2 px-2 py-0.5 bg-emerald-700 text-white text-[9px] font-bold uppercase tracking-wider rounded-md z-10 shadow-sm">
                 {item.highlight}
               </div>
             </div>
             
-            {/* 2. TEXTE (à droite) : INVERSION DES COULEURS (Textes foncés sur fond clair) */}
+            {/* Textes */}
             <div className="p-4 flex flex-col flex-1 justify-between z-10 bg-transparent">
               <div>
-                {/* Catégorie en gris moyen */}
                 <span className="text-[10px] font-bold text-slate-500 mb-1 tracking-wide uppercase truncate block">
                   {item.category}
                 </span>
-                {/* Titre en NOIR (slate-900) qui devient VERT SOMBRE (emerald-700) au survol */}
                 <h3 className="text-sm font-black text-slate-900 mb-1.5 line-clamp-2 group-hover:text-emerald-700 transition-colors leading-snug">
                   {item.name}
                 </h3>
-                {/* Description en gris foncé (slate-600) */}
                 <p className="text-[11px] text-slate-600 font-medium line-clamp-2 leading-relaxed">
                   {item.description}
                 </p>
               </div>
               
               <div className="mt-auto flex items-center justify-between pt-2">
-                {/* Prix en NOIR */}
                 <span className="text-sm font-black text-slate-900">
                   {item.price} FCFA
                 </span>
-                
-                {/* 3. Bouton Panier : Sombre de base, devient VERT SOMBRE (emerald-700) au survol */}
                 <button className="w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-emerald-700 shadow-sm">
                   <ShoppingBag className="w-3.5 h-3.5" />
                 </button>
@@ -123,7 +111,28 @@ export default function ShopBDBooks() {
           </div>
         ))}
         
-        {/* Espace pour le scroll */}
+        {/* ==========================================================
+            CARTE FINALE : FLÈCHE STYLISÉE "VOIR TOUT"
+        ========================================================== */}
+        <Link 
+          href="#"
+          className="group relative flex flex-col items-center justify-center w-[140px] md:w-[180px] h-36 md:h-40 shrink-0 snap-start rounded-2xl bg-shop-surface/40 border border-shop-border hover:bg-shop-surface hover:border-emerald-700/30 transition-all duration-300 cursor-pointer overflow-hidden"
+        >
+          {/* Effet de brillance (Shine) qui traverse la carte au hover */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-700/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-0"></div>
+
+          {/* Cercle avec la Flèche (S'anime vers la droite) */}
+          <div className="w-12 h-12 rounded-full bg-shop-card border border-shop-border flex items-center justify-center text-shop-muted group-hover:text-white group-hover:bg-emerald-700 group-hover:border-emerald-700 transition-all duration-300 mb-3 shadow-sm relative z-10">
+            {/* La flèche elle-même bouge légèrement à l'intérieur du cercle */}
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+          
+          <span className="text-xs font-bold text-shop-muted group-hover:text-white transition-colors text-center px-4 relative z-10">
+            Toute la collection
+          </span>
+        </Link>
+
+        {/* Espace pour le scroll en fin de liste */}
         <div className="w-4 shrink-0"></div>
 
       </div>

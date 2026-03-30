@@ -62,10 +62,9 @@ export default function ShopOurSelection() {
               />
 
               {/* OVERLAY D'ASSOMBRISSEMENT (S'active au hover) */}
-              {/* Passe de transparent à noir à 40% pour faire ressortir le produit devant */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 z-0"></div>
               
-              {/* LE PRODUIT LUI-MÊME (Plus grand, marge réduite, fort zoom au hover) */}
+              {/* LE PRODUIT LUI-MÊME */}
               <Image 
                 src={product.image}
                 alt={product.name}
@@ -85,29 +84,24 @@ export default function ShopOurSelection() {
             ========================================================== */}
             <div className="p-4 md:p-5 flex flex-col flex-1 border-l border-shop-border/50 justify-between z-10 bg-shop-surface">
               <div>
-                {/* Catégorie */}
                 <span className="text-[10px] font-semibold text-amber-500 mb-1 tracking-wide uppercase truncate block">
                   Sélection Premium
                 </span>
                 
-                {/* Titre */}
                 <h3 className="text-base font-bold text-shop-text mb-2 line-clamp-2 group-hover:text-shop-accent transition-colors leading-snug">
                   {product.name}
                 </h3>
                 
-                {/* Description */}
                 <p className="text-xs text-shop-muted line-clamp-2 leading-relaxed">
                   {product.description}
                 </p>
               </div>
               
               <div className="mt-auto flex items-center justify-between pt-2">
-                {/* Prix */}
                 <span className="text-base font-black text-shop-text">
                   {product.formattedPrice} FCFA
                 </span>
                 
-                {/* Bouton Panier Rapide */}
                 <button className="w-9 h-9 bg-shop-card border border-shop-border text-shop-text rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-shop-accent group-hover:text-white group-hover:border-shop-accent shadow-sm z-20">
                   <ShoppingBag className="w-4 h-4" />
                 </button>
@@ -116,8 +110,29 @@ export default function ShopOurSelection() {
 
           </div>
         ))}
+
+        {/* ==========================================================
+            CARTE FINALE : FLÈCHE STYLISÉE "VOIR TOUT"
+        ========================================================== */}
+        <Link 
+          href="#"
+          // Alignée sur la hauteur h-44 md:h-48 des cartes produits
+          className="group relative flex flex-col items-center justify-center w-[140px] md:w-[180px] h-44 md:h-48 shrink-0 snap-start rounded-2xl bg-shop-surface/40 border border-shop-border hover:bg-shop-surface hover:border-shop-accent/40 transition-all duration-300 cursor-pointer overflow-hidden"
+        >
+          {/* Effet de brillance (Shine) adapté à la couleur shop-accent */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-shop-accent/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-0"></div>
+
+          {/* Cercle avec la Flèche (S'anime vers la droite) */}
+          <div className="w-12 h-12 rounded-full bg-shop-card border border-shop-border flex items-center justify-center text-shop-muted group-hover:text-white group-hover:bg-shop-accent group-hover:border-shop-accent transition-all duration-300 mb-3 shadow-sm relative z-10">
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+          
+          <span className="text-xs font-bold text-shop-muted group-hover:text-white transition-colors text-center px-4 relative z-10">
+            Toute la sélection
+          </span>
+        </Link>
         
-        {/* Espace pour le scroll */}
+        {/* Espace pour le scroll en fin de liste */}
         <div className="w-4 shrink-0"></div>
 
       </div>

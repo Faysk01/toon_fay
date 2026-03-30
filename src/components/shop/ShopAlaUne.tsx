@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CalendarDays } from "lucide-react";
+import { ArrowRight, CalendarDays, Plus } from "lucide-react";
 
 // Tes données d'événements à la une
 const EVENTS = [
@@ -104,6 +104,24 @@ export default function ShopAlaUne() {
 
           </Link>
         ))}
+
+        {/* ==========================================================
+            CARTE FINALE : BOUTON "VOIR PLUS" BIEN STYLISÉ
+        ========================================================== */}
+        <Link 
+          href="#"
+          // On garde la même hauteur, mais on réduit un peu la largeur pour bien signifier que c'est un bouton
+          className="group flex flex-col items-center justify-center w-[200px] md:w-[240px] h-[400px] md:h-[460px] shrink-0 snap-start rounded-3xl border-2 border-dashed border-shop-border bg-shop-surface/30 hover:bg-shop-accent/5 hover:border-shop-accent/40 transition-all duration-300 cursor-pointer"
+        >
+          {/* Cercle avec l'icône Plus (S'agrandit et devient vert au hover) */}
+          <div className="w-14 h-14 rounded-full bg-shop-card border border-shop-border flex items-center justify-center text-shop-muted group-hover:text-shop-accent group-hover:scale-110 transition-all duration-300 mb-4 shadow-sm">
+            <Plus className="w-6 h-6" />
+          </div>
+          
+          <span className="text-sm font-bold text-shop-text group-hover:text-shop-accent transition-colors text-center px-4">
+            Voir tous les événements
+          </span>
+        </Link>
 
         {/* Espace pour le scroll en fin de liste */}
         <div className="w-4 md:w-2 shrink-0"></div>
