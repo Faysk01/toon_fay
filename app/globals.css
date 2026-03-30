@@ -3,8 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  /* =========================================
+     FIX iOS SAFARI (Bounce Effect)
+  ========================================= */
+  html, body {
     @apply antialiased text-foreground bg-background;
+    
+    /* C'est cette ligne qui fait la magie : elle bloque le rebond violet/blanc en haut et en bas ! */
+    overscroll-behavior-y: none; 
+    
+    /* Supprime le surlignage gris par défaut sur iOS quand on clique sur un bouton */
+    -webkit-tap-highlight-color: transparent; 
   }
 
   /* =========================================
