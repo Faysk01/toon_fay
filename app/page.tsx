@@ -126,7 +126,7 @@ export default function Home() {
                                   {i + 1}
                                 </span>
                                 
-                                {/* 2. REMPLACEMENT DE <img /> PAR <Image /> ICI */}
+                                {/* REMPLACEMENT DE <img /> PAR <Image /> ICI */}
                                 <div className="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 relative border border-slate-200/60">
                                   <Image 
                                     src={serie.image} 

@@ -5,6 +5,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+// NOUVEAU : Import du contrôleur de thème
+import ThemeController from "@/components/ThemeController";
+
 // Configuration de la police
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -45,6 +48,9 @@ export default function RootLayout({
     <html lang="fr" className="scroll-smooth bg-white">
       <body className={`${outfit.className} antialiased bg-white text-slate-900 min-h-screen flex flex-col`}>
         
+        {/* LE CONTRÔLEUR DE THÈME : Gère le fond dynamique (blanc ou sombre) silencieusement */}
+        <ThemeController />
+
         {/* Navbar fixe ou sticky */}
         <Navbar />
         
