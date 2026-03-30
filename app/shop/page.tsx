@@ -10,8 +10,8 @@ import ShopServices from "@/components/shop/ShopServices";
 import ShopTrendingProducts from "@/components/shop/ShopTrendingProducts"; 
 import ShopOurSelection from "@/components/shop/ShopOurSelection"; 
 import ShopBDBooks from "@/components/shop/ShopBDBooks";
-import ShopASavoir from "@/components/shop/ShopASavoir"; 
 import ShopAlaUne from "@/components/shop/ShopAlaUne";
+import ShopASavoir from "@/components/shop/ShopASavoir"; 
 
 export default function ShopPage() {
   // 1. ÉTATS POUR LA SMART NAVBAR
@@ -23,7 +23,8 @@ export default function ShopPage() {
     // =========================================
     // MAGIE FINTECH : Fond sombre pour le rebond
     // =========================================
-    // On force le fond racine du navigateur à prendre la couleur sombre du Shop
+    // On force le fond racine du navigateur à prendre la couleur sombre du Shop (#020617)
+    // Cela écrase le bg-white du layout parent uniquement pour cette page
     document.documentElement.style.backgroundColor = "#020617";
     document.body.style.backgroundColor = "#020617";
 
@@ -109,7 +110,7 @@ export default function ShopPage() {
       </header>
 
       {/* =========================================
-          COMPOSANTS 
+          COMPOSANTS PRINCIPAUX DE LA BOUTIQUE
       ========================================= */}
       <ShopHeroCarousel />
       <ShopServices />
@@ -117,9 +118,14 @@ export default function ShopPage() {
       <ShopOurSelection />
       <ShopBDBooks />
       
+      {/* =========================================
+          COMPOSANTS D'ACTUALITÉS & ÉVÉNEMENTS
+      ========================================= */}
+      <ShopAlaUne />
+      <ShopASavoir />
 
       {/* =========================================
-          BADGES DE RÉASSURANCE
+          BADGES DE RÉASSURANCE (Placés juste avant le footer)
       ========================================= */}
       <div className="w-full bg-shop-surface/40 border-t border-shop-border py-8 mt-auto shadow-sm">
         <div className="max-w-7xl mx-auto px-6">
@@ -159,12 +165,8 @@ export default function ShopPage() {
         </div>
       </div>
 
-      {/* NOUVEAUX COMPOSANTS D'ACTUALITÉS */}
-      <ShopAlaUne />
-      <ShopASavoir />
-
       {/* =========================================
-          FOOTER MINIMALISTE
+          FOOTER MINIMALISTE BOUTIQUE
       ========================================= */}
       <footer className="bg-shop-bg border-t border-shop-border py-12 px-6">
         <div className="max-w-3xl mx-auto flex flex-col items-center text-center">

@@ -4,8 +4,7 @@
 
 @layer base {
   html, body {
-    /* On laisse ta couleur d'accueil par défaut (bg-background) */
-    @apply antialiased text-foreground bg-background;
+
     
     /* On a SUPPRIMÉ le overscroll-behavior pour remettre le rebond ! */
     -webkit-tap-highlight-color: transparent; 

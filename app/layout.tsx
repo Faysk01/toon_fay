@@ -24,11 +24,15 @@ export const metadata: Metadata = {
   },
 };
 
-// Configuration pour mobile (couleur de la barre de statut)
+// ==============================================================================
+// 3. CONFIGURATION VIEWPORT & BARRE DE STATUT (iOS/Android)
+// ==============================================================================
 export const viewport: Viewport = {
-  themeColor: "#4f46e5", // La couleur Indigo-600 de ton thème
+  // C'EST ÇA QUI CAUSAIT LE VIOLET ! On le passe en blanc (#ffffff)
+  themeColor: "#ffffff", 
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1, // Très important sur mobile : empêche le zoom forcé quand on clique sur un input
 };
 
 export default function RootLayout({
@@ -37,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Ajout de 'scroll-smooth' pour un défilement fluide
-    <html lang="fr" className="scroll-smooth">
+    // Ajout de 'bg-white' directement sur la balise html pour sécuriser le fond caché
+    <html lang="fr" className="scroll-smooth bg-white">
       <body className={`${outfit.className} antialiased bg-white text-slate-900 min-h-screen flex flex-col`}>
         
         {/* Navbar fixe ou sticky */}
@@ -46,7 +50,7 @@ export default function RootLayout({
         
         {/* Le contenu principal */}
         {/* On ajoute flex-grow pour que le footer soit toujours poussé en bas, même si la page est vide */}
-        <div className="flex-grow">
+        <div className="flex-grow bg-white">
           {children}
         </div>
         
